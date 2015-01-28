@@ -45,6 +45,24 @@ public class Graph {
 		}
 	}
 
+	public Graph(int vSize, int boxSize, int range) {
+		vertex = new ArrayList<Vertex>();
+		surfaces = new ArrayList<Surface>(getNumOfPlanes(vSize));
+		Vertex temp;
+
+		for (int i = 0; i < vSize; i++) {
+			int j =0;
+			do {
+				temp = new Vertex(boxSize,range);
+				++j;
+			} while (isContainsOnSurface(temp));//Checks if a point is on an existing plane
+			addPlains(temp);//Adds all the possible combinations of plane
+			System.out.println(j);
+			vertex.add(new Vertex(temp));
+
+		}
+	}
+
 	/**
 	 *  Adds all the possible combinations of plane o(n^2)
 	 * @param ver Vertex to Add
@@ -80,23 +98,30 @@ public class Graph {
 	}
 	@Override
 	public String toString() {
-		String print = "Graph\n"+"Vertexs\n" ;
+		StringBuffer print = new StringBuffer();
+		print.append("Graph\n"+"Vertexs\n") ;
 		for (int i = 0; i < vertex.size(); i++) {
-			print+=(i+1)+") "+vertex.get(i).toString()+"\n";
+			print.append((i+1)+") "+vertex.get(i).toString()+"\n");
 		}
-		print+="Surfaces\n";
+		print.append("Surfaces\n");
 		for (int i = 0; i < surfaces.size(); i++) {
-			print+=(i+1)+") "+surfaces.get(i).toString()+"\n";
+			print.append((i+1)+") "+surfaces.get(i).toString()+"\n");
 			if (i%1000 == 0)
 				System.out.println("test: " + i);
 		}
-		return print;
+	
+		return print.toString();
 	}
 
 	public static void main(String[] args) {
 		ArrayList<Vertex> vertex = new ArrayList<Vertex>();
-		int n =50;
-		Graph g = new Graph(n);
+		int vSize =100;
+		int boxSize =1;
+		int range=10;
+
+		//int n=100;
+		Graph g = new Graph(vSize,boxSize,range);
+	//	Graph g1 = new Graph(n);
 		System.out.println(g.toString());
 
 		/*	Surface[] test = new Surface[getNumOfPlanes(n)];
@@ -132,32 +157,32 @@ public class Graph {
 
 
 
-public static void filerWriter(String input) {
+	public static void filerWriter(String input) {
 
 
-	try{
-		String content =input;
-		System.out.println("toString done !!");
-		File file = new File("filename.txt");
+		try{
+			String content =input;
+			System.out.println("toString done !!");
+			File file = new File("filename.txt");
 
-		// if file doesnt exists, then create it
-		if (!file.exists()) {
-			file.createNewFile();
+			// if file doesnt exists, then create it
+			if (!file.exists()) {
+				file.createNewFile();
+			}
+
+			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(content);
+			bw.close();
+
+			System.out.println("Done");
+
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-
-		FileWriter fw = new FileWriter(file.getAbsoluteFile());
-		BufferedWriter bw = new BufferedWriter(fw);
-		bw.write(content);
-		bw.close();
-
-		System.out.println("Done");
-
-	} catch (IOException e) {
-		e.printStackTrace();
 	}
-}
 
-	
+
 }
 
 
