@@ -101,21 +101,16 @@ public class Graph_Static_M {
 
 	public static void main(String[] args) {
 		ArrayList<Vertex> vertex = new ArrayList<Vertex>();
-		
 		int n =100;
-		Graph g = new Graph(n);
-		System.out.println(g.toString());
-		
-		
 		/*Graph g = new Graph(n);
 		System.out.println(g.toString());
 */
-	/*	Surface[] test = new Surface[getNumOfPlanes(n)];
+		Surface[] test = new Surface[getNumOfPlanes(n)];
 		for (int i = 0; i < test.length; i++) {
 			test[i] = new Surface(new Vertex(i,i+2,i-3),new Vertex(i,i-3,i),new Vertex(i+4,i,i));
 			if (i%1000 == 0)
 				System.out.println("test: " + i);
-		}*/
+		}
 		/*try{
 			String content =g.toString();
 			 System.out.println("toString done !!");
