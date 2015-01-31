@@ -26,6 +26,14 @@ public class Vertex {
 		this.z = v.z;
 	}
 	
+	public Vertex(int boxSize, int range2) {
+		
+		this.x =Math.floor(Math.random()*boxSize*range2)/range2;
+		this.y = Math.floor(Math.random()*boxSize*range2)/range2;
+		this.z = Math.floor(Math.random()*boxSize*range2)/range2;
+		
+	}
+
 	@Override
 	public String toString() {
 		return "("+x+", "+y+", "+z+")";
