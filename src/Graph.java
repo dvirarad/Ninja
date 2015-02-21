@@ -1,21 +1,21 @@
-import java.util.ArrayList;
-import java.util.logging.Logger;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Graph {
 
-	ArrayList<Vertex> vertex;
-	ArrayList<Surface>	surfaces;
+	private ArrayList<Vertex> vertex;
+	private ArrayList<SurfaceEquation> surfaces;
 
-	private int maxVertexSerach =0;
+	private int maxVertexSearch = 0;
 	private int vSize, range, condition;
+	
 	public Graph(ArrayList<Vertex> _vertex) {
 
 		vertex = new ArrayList<Vertex>();
-		surfaces = new ArrayList<Surface>();
+		surfaces = new ArrayList<SurfaceEquation>();
 		Vertex temp;
 
 		for (Vertex ver : _vertex) {	
@@ -29,7 +29,7 @@ public class Graph {
 
 	public Graph(int n){
 		vertex = new ArrayList<Vertex>();
-		surfaces = new ArrayList<Surface>(getNumOfPlanes(n));
+		surfaces = new ArrayList<SurfaceEquation>(getNumOfPlanes(n));
 		Vertex temp;
 
 		for (int i = 0; i < n; i++) {
@@ -41,7 +41,6 @@ public class Graph {
 			addPlains(temp);//Adds all the possible combinations of plane
 
 			vertex.add(new Vertex(temp));
-
 		}
 	}
 
@@ -58,7 +57,7 @@ public class Graph {
 		this.range =range;
 		
 		vertex = new ArrayList<Vertex>();
-		surfaces = new ArrayList<Surface>(getNumOfPlanes(vSize));
+		surfaces = new ArrayList<SurfaceEquation>(getNumOfPlanes(vSize));
 		Vertex temp;
 
 		
@@ -66,8 +65,8 @@ public class Graph {
 			int j =0;
 			do {
 				temp = new Vertex(condition,range);
-				if (maxVertexSerach < ++j) 
-					maxVertexSerach =j;
+				if (maxVertexSearch < ++j) 
+					maxVertexSearch =j;
 			} while (isContainsOnSurface(temp));//Checks if a point is on an existing plane
 			
 			addPlains(temp);//Adds all the possible combinations of plane
@@ -83,7 +82,7 @@ public class Graph {
 		if(vertex.size()>=2){
 			for (int i = 0; i < vertex.size(); i++) {
 				for (int j = i+1; j < vertex.size(); j++) {
-					surfaces.add(new Surface(vertex.get(i), vertex.get(j), ver));
+					surfaces.add(new SurfaceEquation(vertex.get(i), vertex.get(j), ver));
 				}
 			}
 		}
@@ -94,8 +93,8 @@ public class Graph {
 	 * @return true if a point is on an existing plane 
 	 */
 	private boolean isContainsOnSurface(Vertex ver) {
-		for (Surface surface : surfaces) 
-			if (surface.onSurface(ver)) 
+		for (SurfaceEquation surface : surfaces) 
+			if (surface.includesVertex(ver)) 
 				return true;
 
 		return false;
@@ -138,20 +137,12 @@ public class Graph {
 		//System.out.println(g.toString());
 		//System.out.println(g.testToString());
 		
-		
-		
-		
-		
 		/*	Surface[] test = new Surface[getNumOfPlanes(n)];
 		for (int i = 0; i < test.length; i++) {
 			test[i] = new Surface(new Vertex(i,i+2,i-3),new Vertex(i,i-3,i),new Vertex(i+4,i,i));
 			if (i%1000 == 0)
 				System.out.println("test: " + i);
 		}*/
-
-
-
-
 
 		/*Vertex v1 = new Vertex(1,1,1);
 		Vertex v2= new Vertex(-1,1,0);
@@ -172,8 +163,6 @@ public class Graph {
 		System.out.println(g.toString());*/
 	}
 
-
-
 	private String testToString() {
 		String test ="";
 		test += "Graph 3D";
@@ -181,7 +170,7 @@ public class Graph {
 		test += "\nNumber of Surface: "+ getNumOfPlanes(vSize);
 		test += "\nCondition - Square's edge size: "+ condition;
 		test += "\nRange "+ range;
-		test += "\nMax number of points checked: "+ maxVertexSerach;
+		test += "\nMax number of points checked: "+ maxVertexSearch;
 		return test;
 	}
 
@@ -216,7 +205,7 @@ public class Graph {
 			bw.newLine();
 			bw.write("Range "+ range);
 			bw.newLine();
-			bw.write("Max number of points checked: "+ maxVertexSerach);
+			bw.write("Max number of points checked: "+ maxVertexSearch);
 			
 			bw.close();
 
@@ -226,11 +215,4 @@ public class Graph {
 			e.printStackTrace();
 		}
 	}
-
-	
-
-
 }
-
-
-

@@ -7,14 +7,10 @@ import java.io.IOException;
 
 public class Graph_Static_M {
 
-
-
-
 	static int counterSurface =0;
 	
 	Vertex[] vertex;
-	Surface[]	surfaces;
-
+	SurfaceEquation[]	surfaces;
 
 	/*public Graph(ArrayList<Vertex> _vertex) {
 
@@ -34,7 +30,7 @@ public class Graph_Static_M {
 	public Graph_Static_M(int n){
 
 		vertex = new Vertex[n];
-		surfaces = new Surface[(getNumOfPlanes(n))];
+		surfaces = new SurfaceEquation[(getNumOfPlanes(n))];
 		Vertex temp;
 
 		for (int i = 0; i < n; i++) {
@@ -58,7 +54,7 @@ public class Graph_Static_M {
 		if(vertex.length>=2){
 			for (int i = 0; i < vertex.length; i++) {
 				for (int j = i+1; j < vertex.length; j++) {
-					surfaces[counterSurface] =new Surface(vertex[i], vertex[j], ver);
+					surfaces[counterSurface] =new SurfaceEquation(vertex[i], vertex[j], ver);
 					counterSurface++;
 				}
 			}
@@ -70,8 +66,8 @@ public class Graph_Static_M {
 	 * @return true if a point is on an existing plane 
 	 */
 	private boolean isContainsOnSurface(Vertex ver) {
-		for (Surface surface : surfaces) 
-			if (surface.onSurface(ver)) 
+		for (SurfaceEquation surface : surfaces) 
+			if (surface.includesVertex(ver)) 
 				return true;
 
 		return false;
@@ -137,9 +133,6 @@ public class Graph_Static_M {
 			e.printStackTrace();
 		}*/
 
-
-
-
 		/*Vertex v1 = new Vertex(1,1,1);
 			Vertex v2= new Vertex(-1,1,0);
 			Vertex v3 = new Vertex(2,0,3);
@@ -158,14 +151,4 @@ public class Graph_Static_M {
 		/*Graph g = new Graph(vertex);
 			System.out.println(g.toString());*/
 	}
-
-
-
-
-
-
-
-
-
-
 }
