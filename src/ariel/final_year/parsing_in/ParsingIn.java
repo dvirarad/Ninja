@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class ParsingIn {
@@ -30,6 +31,9 @@ public class ParsingIn {
 					adjacencyMat[vOnFocus-1][Integer.parseInt(st.nextToken())-1] = true;
 				}
 			}
+			for (int i = 0; i < adjacencyMat.length; i++) {
+				System.out.println(Arrays.toString(adjacencyMat[i]));
+			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -51,7 +55,7 @@ public class ParsingIn {
 	}
 	
 	public static void main(String[] args) {
-		File f = new File("/Users/Jeremie/Desktop/input.xml");
+		File f = new File("input.xml");
 		new ParsingIn(f);
 	}
 }
