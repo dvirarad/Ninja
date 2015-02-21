@@ -1,3 +1,4 @@
+package ariel.final_year.main_algorithm;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -13,7 +14,6 @@ public class Graph {
 	private int vSize, range, condition;
 	
 	public Graph(ArrayList<Vertex> _vertex) {
-
 		vertex = new ArrayList<Vertex>();
 		surfaces = new ArrayList<SurfaceEquation>();
 		Vertex temp;
@@ -21,8 +21,9 @@ public class Graph {
 		for (Vertex ver : _vertex) {	
 			do {
 				temp = new Vertex(ver);
-			} while (isContainsOnSurface(temp));
-			addPlains(temp);
+			} while (belongsToDefinedPlane(temp));
+			
+			addSufaceEquations(temp);
 			vertex.add(new Vertex(temp));
 		}
 	}
@@ -33,13 +34,11 @@ public class Graph {
 		Vertex temp;
 
 		for (int i = 0; i < n; i++) {
-
 			do {
 				temp = new Vertex();
-
-			} while (isContainsOnSurface(temp));//Checks if a point is on an existing plane
-			addPlains(temp);//Adds all the possible combinations of plane
-
+			} while (belongsToDefinedPlane(temp));
+			
+			addSufaceEquations(temp);
 			vertex.add(new Vertex(temp));
 		}
 	}
@@ -60,26 +59,25 @@ public class Graph {
 		surfaces = new ArrayList<SurfaceEquation>(getNumOfPlanes(vSize));
 		Vertex temp;
 
-		
 		for (int i = 0; i < vSize; i++) {
 			int j =0;
 			do {
 				temp = new Vertex(condition,range);
 				if (maxVertexSearch < ++j) 
 					maxVertexSearch =j;
-			} while (isContainsOnSurface(temp));//Checks if a point is on an existing plane
+			} while (belongsToDefinedPlane(temp));			
 			
-			addPlains(temp);//Adds all the possible combinations of plane
+			addSufaceEquations(temp);
 			vertex.add(new Vertex(temp));
 		}
 	}
 
 	/**
-	 *  Adds all the possible combinations of plane o(n^2)
+	 * Adds all the possible combinations of plane o(n^2)
 	 * @param ver Vertex to Add
 	 */
-	private void addPlains(Vertex ver) {
-		if(vertex.size()>=2){
+	private void addSufaceEquations(Vertex ver) {
+		if(vertex.size() >= 2){
 			for (int i = 0; i < vertex.size(); i++) {
 				for (int j = i+1; j < vertex.size(); j++) {
 					surfaces.add(new SurfaceEquation(vertex.get(i), vertex.get(j), ver));
@@ -87,18 +85,20 @@ public class Graph {
 			}
 		}
 	}
+	
 	/**
-	 *  Checks if a point is on an existing plane o(n^4)
+	 * Checks if a point belongs to an already defined plane o(n^3)
 	 * @param ver
-	 * @return true if a point is on an existing plane 
+	 * @return true if ver belongs to an already defined plane
 	 */
-	private boolean isContainsOnSurface(Vertex ver) {
+	private boolean belongsToDefinedPlane(Vertex ver) {
 		for (SurfaceEquation surface : surfaces) 
 			if (surface.includesVertex(ver)) 
 				return true;
 
 		return false;
 	}
+	
 	public static int getNumOfPlanes(int n) {
 		int res = 1;
 		for (int i = 3; i < n; i++) {
@@ -107,9 +107,11 @@ public class Graph {
 		
 		return res;
 	}
+	
 	@Override
 	public String toString() {
 		StringBuffer print = new StringBuffer();
+		
 		print.append("Graph\n"+"Vertexs\n") ;
 		for (int i = 0; i < vertex.size(); i++) {
 			print.append((i+1)+") "+vertex.get(i).toString()+"\n");
@@ -133,7 +135,7 @@ public class Graph {
 		//int n=100;
 		Graph g = new Graph(vSize,boxSize,range);
 	//	Graph g1 = new Graph(n);
-		g.fileTest("Test5");
+		g.resultLog("Test5");
 		//System.out.println(g.toString());
 		//System.out.println(g.testToString());
 		
@@ -163,26 +165,15 @@ public class Graph {
 		System.out.println(g.toString());*/
 	}
 
-	private String testToString() {
-		String test ="";
-		test += "Graph 3D";
-		test += "\nNumber of vertices: "+ vSize;
-		test += "\nNumber of Surface: "+ getNumOfPlanes(vSize);
-		test += "\nCondition - Square's edge size: "+ condition;
-		test += "\nRange "+ range;
-		test += "\nMax number of points checked: "+ maxVertexSearch;
-		return test;
-	}
-
 	/**
-	 * Create file with resulte
+	 * Create file with results
 	 * number of vertex
 	 * number of surface
 	 * condition, ragne.
 	 * max time to find free vertex
 	 * @param string file name
 	 */
-	private void fileTest(String filename) {
+	private void resultLog(String filename) {
 		try{
 			String fileName =filename;
 			
