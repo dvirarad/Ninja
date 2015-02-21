@@ -3,7 +3,7 @@ public class Vertex {
 
 	private final int RANGE = 10;
 	private final int AFTER_DOT = 100;//3 number after dot 
-	private double x,y,z;
+	public double x,y,z;
 
 	public Vertex(){
 		x = Math.floor((Math.random()*RANGE)*AFTER_DOT)/AFTER_DOT;
