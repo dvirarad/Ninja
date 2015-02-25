@@ -1,3 +1,5 @@
+//https://github.com/darius/expr
+
 // Variables associate values with names.
 // Copyright 1996 by Darius Bacon; see the file COPYING.
 

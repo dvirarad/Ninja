@@ -94,11 +94,11 @@ public class Vars {
 	public static final String RADIUS_XS 		= "0.02";
 	
 	public static final String V_START 			= "Transform {\n";
-	public static final String V_END 			= "\n\tchildren Shape {\n\t\tgeometry Sphere {\n\t\t\tradius " + RADIUS_XL + "\n\t\t} # end sphere\n\t} # end shape\n} # end transform\n";
+	public static final String V_END 			= "\n\tchildren Shape {\n\t\tgeometry Sphere {\n\t\t\tradius " + RADIUS_XS + "\n\t\t} # end sphere\n\t} # end shape\n} # end transform\n";
 	public static final String V_TRANSLATION 	= "\ttranslation ";
 	
 	public static final String E_START 			= "Transform {\n\tchildren Shape {\n\t\tappearance USE look\n\t\tgeometry Extrusion {\n\t\t\tbeginCap FALSE\n\t\t\tendCap FALSE\n\t\t\tsolid FALSE\n\t\t\tcreaseAngle 1.0\n\t\t\tcrossSection ["
-			+ X_SECTION_XL + "] # end cross section\n";
+			+ X_SECTION_XS + "] # end cross section\n";
 	public static final String E_END 			= "] # end spine\n\t\t} # end extrusion\n\t} # end shape\n} # end transform\n";
 	public static final String E_SPINE 			= "\t\t\tspine [";
 }

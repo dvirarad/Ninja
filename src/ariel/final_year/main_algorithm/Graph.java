@@ -58,7 +58,8 @@ public class Graph {
 			do {
 				temp = new Vertex();
 				if (maxVertexSearch < ++j) 
-					maxVertexSearch =j;
+					maxVertexSearch = j;
+				if(!condition.isMet(temp)) System.out.println("AGAIN");
 			} while (belongsToDefinedPlane(temp) && !condition.isMet(temp));			
 
 			addSufaceEquations(temp);
@@ -69,6 +70,7 @@ public class Graph {
 	public ArrayList<Vertex> getVertices() {
 		return vertices;
 	}
+	
 	/**
 	 * Adds all the possible combinations of plane o(n^2)
 	 * @param ver Vertex to Add

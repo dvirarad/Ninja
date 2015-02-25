@@ -1,5 +1,7 @@
 package ariel.final_year.main_algorithm;
 
+import java.util.Random;
+
 import ariel.final_year.utilities.Vars;
 
 public class Vertex {
@@ -7,9 +9,10 @@ public class Vertex {
 	public double x,y,z;
 
 	public Vertex(){
-		x = Math.floor(Math.random()*Vars.RANGE*Vars.PRECISION)/Vars.PRECISION;
-		y = Math.floor(Math.random()*Vars.RANGE*Vars.PRECISION)/Vars.PRECISION;
-		z = Math.floor(Math.random()*Vars.RANGE*Vars.PRECISION)/Vars.PRECISION;
+		Random r = new Random();
+		x = Math.floor((r.nextDouble()*Vars.RANGE*Vars.PRECISION)-Vars.RANGE*Vars.PRECISION/2)/Vars.PRECISION;
+		y = Math.floor((r.nextDouble()*Vars.RANGE*Vars.PRECISION)-Vars.RANGE*Vars.PRECISION/2)/Vars.PRECISION;
+		z = Math.floor((r.nextDouble()*Vars.RANGE*Vars.PRECISION)-Vars.RANGE*Vars.PRECISION/2)/Vars.PRECISION;
 	}
 	
 	public Vertex(double newX, double newY, double newZ) {
@@ -25,9 +28,10 @@ public class Vertex {
 	}
 	
 	public Vertex(int range, int precision) {
-		x = Math.floor(Math.random()*range*precision)/precision;
-		y = Math.floor(Math.random()*range*precision)/precision;
-		z = Math.floor(Math.random()*range*precision)/precision;
+		Random r = new Random();
+		x = Math.floor(r.nextDouble()*range*precision)/precision;
+		y = Math.floor(r.nextDouble()*range*precision)/precision;
+		z = Math.floor(r.nextDouble()*range*precision)/precision;
 	}
 
 	@Override

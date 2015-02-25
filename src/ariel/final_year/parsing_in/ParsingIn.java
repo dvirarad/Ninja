@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 import ariel.final_year.expression.SyntaxException;
@@ -35,9 +34,6 @@ public class ParsingIn {
 				while(st.hasMoreTokens()) {
 					adjacencyMat[vOnFocus-1][Integer.parseInt(st.nextToken())-1] = true;
 				}
-			}
-			for (int i = 0; i < adjacencyMat.length; i++) {
-				System.out.println(Arrays.toString(adjacencyMat[i]));
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

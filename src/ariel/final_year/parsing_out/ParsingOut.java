@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import ariel.final_year.main_algorithm.Vertex;
-import ariel.final_year.utilities.Common;
+import ariel.final_year.utilities.StaticMethods;
 import ariel.final_year.utilities.Vars;
 
 public class ParsingOut {
@@ -114,7 +114,7 @@ public class ParsingOut {
 	 * generates the wrl file into the project folder
 	 */
 	public String generateOutput() {
-		String fileName = "generated wrls\\" + Common.getDate() + "_output.wrl";
+		String fileName = "generated wrls\\" + StaticMethods.getDate() + "_output.wrl";
 		File f = new File(fileName);
 		BufferedWriter bw;
 		try {
