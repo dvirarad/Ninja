@@ -1,11 +1,12 @@
 package ariel.final_year.main_algorithm;
 import java.util.Vector;
 
+import ariel.final_year.utilities.Vars;
+
 // reference 
 // http://www.maplesoft.com/support/help/maple/view.aspx?path=MathApps%2FEquationofaPlane3Points
 
 public class SurfaceEquation {
-	private final int AFTER_DOT = 100; // 3 numbers after dot 
 	
 	private double a,b,c,d;
 
@@ -23,16 +24,16 @@ public class SurfaceEquation {
 		v1_v3.add(2,v3.z-v1.z);
 
 		a = v1_v2.get(1)*v1_v3.get(2) - v1_v2.get(2)*v1_v3.get(1);
-		a =  Math.floor(a*AFTER_DOT)/AFTER_DOT;
+		a =  Math.floor(a*Vars.AFTER_DOT)/Vars.AFTER_DOT;
 		
 		b = v1_v2.get(2)*v1_v3.get(0) - v1_v2.get(0)*v1_v3.get(2);
-		b =  Math.floor(b*AFTER_DOT)/AFTER_DOT;
+		b =  Math.floor(b*Vars.AFTER_DOT)/Vars.AFTER_DOT;
 		
 		c = v1_v2.get(0)*v1_v3.get(1) - v1_v2.get(1)*v1_v3.get(0);
-		c =  Math.floor(c*AFTER_DOT)/AFTER_DOT;
+		c =  Math.floor(c*Vars.AFTER_DOT)/Vars.AFTER_DOT;
 		
 		d = -(a*v1.x +b*v1.y + c*v1.z);		
-		d =  Math.floor(d*AFTER_DOT)/AFTER_DOT;
+		d =  Math.floor(d*Vars.AFTER_DOT)/Vars.AFTER_DOT;
 	}
 	
 	/**

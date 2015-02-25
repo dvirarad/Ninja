@@ -7,29 +7,24 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 
 import ariel.final_year.main_algorithm.Vertex;
+import ariel.final_year.utilities.Common;
+import ariel.final_year.utilities.Vars;
 
 public class ParsingOut {
-	
-	private final String TEMPLATE 		= "output_template.wrl";
-	
-	private final String V_START 		= "Transform {\n";
-	private final String V_END 			= "\n\tchildren Shape {\n\t\tgeometry Sphere {\n\t\t\tradius 0.2\n\t\t} # end sphere\n\t} # end shape\n} # end transform\n";
-	private final String V_TRANSLATION 	= "\ttranslation ";
-	
-	private final String E_START 		= "Transform {\n\tchildren Shape {\n\t\tappearance USE look\n\t\tgeometry Extrusion {\n\t\t\tbeginCap FALSE\n\t\t\tendCap FALSE\n\t\t\tsolid FALSE\n\t\t\tcreaseAngle 1.0\n\t\t\tcrossSection [0.10  0.00,0.092 -0.038,0.071 -0.071,0.038 -0.092,0.00 -0.10,-0.038 -0.092,-0.071 -0.071,-0.092 -0.038,-0.10 -0.00,-0.092  0.038,-0.071  0.071,-0.038  0.092,0.00  0.10,0.038  0.092,0.071  0.071,0.092  0.038,0.10  0.00] # end cross section\n";
-	private final String E_END 			= "] # end spine\n\t\t} # end extrusion\n\t} # end shape\n} # end transform\n";
-	private final String E_SPINE 		= "\t\t\tspine [";
 	
 	private boolean[][] 		adjacencyMat;
 	private ArrayList<Vertex> 	vertices;
 	private StringBuffer 		outputBuffer;
 
+	/**
+	 * constructor
+	 * @param newAdjacencyMat
+	 * @param newVertices
+	 */
 	public ParsingOut(boolean[][] newAdjacencyMat, ArrayList<Vertex> newVertices) {
 		adjacencyMat = new boolean[newAdjacencyMat.length][newAdjacencyMat.length];
 		for (int i = 0; i < newAdjacencyMat.length; i++) {
@@ -40,7 +35,7 @@ public class ParsingOut {
 		vertices.addAll(newVertices);
 
 		outputBuffer = new StringBuffer();
-		File f = new File(TEMPLATE);
+		File f = new File(Vars.TEMPLATE);
 		BufferedReader br;
 		String line;
 		try {
@@ -58,8 +53,14 @@ public class ParsingOut {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		addExtrusions();
+		addVertices();
 	}
 
+	/**
+	 * adds all edges to wrl file
+	 */
 	private void addExtrusions() {
 		outputBuffer.append("# -----START EDGES-----\n");
 		
@@ -74,13 +75,21 @@ public class ParsingOut {
 		
 		outputBuffer.append("# -----END EDGES-----\n");
 	}
+	/**
+	 * adds single edge to wrl file
+	 * @param vertexI
+	 * @param vertexJ
+	 */
 	private void addExtrusion(Vertex vertexI, Vertex vertexJ) {
 		String spineContent = vertexI.x + " " + vertexI.y + " " + vertexI.z + ", " + vertexJ.x + " " + vertexJ.y + " " + vertexJ.z;
-		String spine = E_SPINE + spineContent;
+		String spine = Vars.E_SPINE + spineContent;
 		
-		outputBuffer.append(E_START + spine + E_END);
+		outputBuffer.append(Vars.E_START + spine + Vars.E_END);
 	}
 	
+	/**
+	 * adds all vertices to wrl file
+	 */
 	private void addVertices() {
 		outputBuffer.append("# -----START VERTICES-----\n");
 		
@@ -90,20 +99,23 @@ public class ParsingOut {
 		
 		outputBuffer.append("# -----END VERTICES-----\n");
 	}
+	/**
+	 * adds single vertex to wrl file
+	 * @param v
+	 */
 	private void addVertex(Vertex v) {
 		String translationContent = v.x + " " + v.y + " " + v.z;
-		String translation = V_TRANSLATION + translationContent;
+		String translation = Vars.V_TRANSLATION + translationContent;
 		
-		outputBuffer.append(V_START + translation + V_END);
+		outputBuffer.append(Vars.V_START + translation + Vars.V_END);
 	}
 	
-	private static String getDate() {
-		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yy_HH-mm");
-		return formatter.format(new Date());
-	}
-	
-	public void generateOutput() {
-		File f = new File(getDate() + "_output.wrl");
+	/**
+	 * generates the wrl file into the project folder
+	 */
+	public String generateOutput() {
+		String fileName = "generated wrls\\" + Common.getDate() + "_output.wrl";
+		File f = new File(fileName);
 		BufferedWriter bw;
 		try {
 			f.createNewFile();
@@ -117,6 +129,7 @@ public class ParsingOut {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return fileName;
 	}
 
 	public static void main(String[] args) {
