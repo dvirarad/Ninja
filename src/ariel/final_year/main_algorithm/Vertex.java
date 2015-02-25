@@ -29,9 +29,9 @@ public class Vertex {
 	
 	public Vertex(int range, int precision) {
 		Random r = new Random();
-		x = Math.floor(r.nextDouble()*range*precision)/precision;
-		y = Math.floor(r.nextDouble()*range*precision)/precision;
-		z = Math.floor(r.nextDouble()*range*precision)/precision;
+		x = Math.floor((r.nextDouble()*range*precision)-range*precision/2)/precision;
+		y = Math.floor((r.nextDouble()*range*precision)-range*precision/2)/precision;
+		z = Math.floor((r.nextDouble()*range*precision)-range*precision/2)/precision;
 	}
 
 	@Override
