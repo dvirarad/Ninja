@@ -1,0 +1,21 @@
+There are 3 ways to distribute system dlls to target computers:
+1. using vcredist_x86.exe for your VC version (or ia64 or x64) - running it on the target computer
+2. using merge modules in deployment projects
+3. put the .dlls directly in your application folder
+http://msdn.microsoft.com/en-us/library/ms235299(v=VS.100).aspx - explains for the 2010 VC10
+
+freewrl win32 as of:
+August 10, 2011 - we use method 3 -dlls in applicaiton folder- as follows:
+- dllfreewrl.dll - VC90 dlls, gdiplus.dll (built with vs2008 express edition)
+- freeWRL.exe - VC90 dlls
+- js32.dll VC90
+- pthreadsVC2.dll VC90
+- freeWRLAx.ocx - VC71 dlls (built with vs2003 standard edition)
+
+This means if you use a different VisualStudio/VisualC++ edition, you need to get the appropriate version of the system dlls.
+If you have problems it may show up as so called SidebySide (Sxs) issues:
+http://blogs.msdn.com/b/junfeng/archive/2006/04/14/576314.aspx 
+however you don't need to rely on any Sxs if you get all the right system dlls in your application folder.
+Depends.exe http://www.dependencywalker.com/ can also be used to check the list of dlls your exe/ocx/dll is dependent on.
+Computer > Administrative Tools > Event Viewer can also show more detail - which dll wasn't found
+  (right click on xError event for specific info)
