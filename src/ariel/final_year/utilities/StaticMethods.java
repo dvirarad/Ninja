@@ -40,6 +40,14 @@ public class StaticMethods {
 		}
 	}
 
+	public static boolean isWindows() {
+		return (Vars.OS.indexOf("win") >= 0);
+	}
+ 
+	public static boolean isMac() {
+		return (Vars.OS.indexOf("mac") >= 0);
+	}
+
 	public static void main(String[] args) {
 		generateFullGraphText(60);
 	}

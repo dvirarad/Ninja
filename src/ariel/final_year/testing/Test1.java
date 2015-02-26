@@ -7,6 +7,8 @@ import ariel.final_year.expression.SyntaxException;
 import ariel.final_year.main_algorithm.Graph;
 import ariel.final_year.parsing_in.ParsingIn;
 import ariel.final_year.parsing_out.ParsingOut;
+import ariel.final_year.utilities.StaticMethods;
+import ariel.final_year.utilities.Vars;
 
 public class Test1 {
 	public static void main(String[] args) {
@@ -17,8 +19,10 @@ public class Test1 {
 			ParsingOut po = new ParsingOut(pi.getAdjacencyMat(), g.getVertices());
 			String fileName = po.generateOutput();
 			
-			new ProcessBuilder("freeWRL.2\\freeWRL.exe", fileName).start();
-			
+			if(StaticMethods.isWindows())
+				new ProcessBuilder(Vars.WIN_EXEC, fileName).start();
+			else if(StaticMethods.isMac())
+				new ProcessBuilder("open", Vars.MAC_EXEC, fileName).start();			
 		} catch (SyntaxException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

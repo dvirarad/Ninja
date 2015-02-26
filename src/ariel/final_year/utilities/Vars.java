@@ -101,4 +101,9 @@ public class Vars {
 			+ X_SECTION_XS + "] # end cross section\n";
 	public static final String E_END 			= "] # end spine\n\t\t} # end extrusion\n\t} # end shape\n} # end transform\n";
 	public static final String E_SPINE 			= "\t\t\tspine [";
+	
+	public static String OS 					= System.getProperty("os.name").toLowerCase();
+	public static String WIN_EXEC				= "FreeWRL-WIN/freeWRL.exe";
+	public static String MAC_EXEC				= "FreeWRL-MAC/FreeWRL.app";
+	
 }

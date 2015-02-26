@@ -114,10 +114,13 @@ public class ParsingOut {
 	 * generates the wrl file into the project folder
 	 */
 	public String generateOutput() {
-		String fileName = "generated wrls\\" + StaticMethods.getDate() + "_output.wrl";
+		File folder = new File("generated wrls");
+		String fileName = folder.getPath() + File.separator + StaticMethods.getDate() + "_output.wrl";
 		File f = new File(fileName);
 		BufferedWriter bw;
 		try {
+			if (!folder.exists())
+				folder.mkdir();
 			f.createNewFile();
 			bw = new BufferedWriter(new FileWriter(f));
 			
