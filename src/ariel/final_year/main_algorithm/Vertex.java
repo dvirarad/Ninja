@@ -2,7 +2,7 @@ package ariel.final_year.main_algorithm;
 
 import java.util.Random;
 
-import ariel.final_year.utilities.Vars;
+import ariel.final_year.utilities.StaticVars;
 
 public class Vertex {
 
@@ -10,9 +10,9 @@ public class Vertex {
 
 	public Vertex(){
 		Random r = new Random();
-		x = Math.floor((r.nextDouble()*Vars.RANGE*Vars.PRECISION)-Vars.RANGE*Vars.PRECISION/2)/Vars.PRECISION;
-		y = Math.floor((r.nextDouble()*Vars.RANGE*Vars.PRECISION)-Vars.RANGE*Vars.PRECISION/2)/Vars.PRECISION;
-		z = Math.floor((r.nextDouble()*Vars.RANGE*Vars.PRECISION)-Vars.RANGE*Vars.PRECISION/2)/Vars.PRECISION;
+		x = Math.floor((r.nextDouble()*StaticVars.RANGE*StaticVars.PRECISION)-StaticVars.RANGE*StaticVars.PRECISION/2)/StaticVars.PRECISION;
+		y = Math.floor((r.nextDouble()*StaticVars.RANGE*StaticVars.PRECISION)-StaticVars.RANGE*StaticVars.PRECISION/2)/StaticVars.PRECISION;
+		z = Math.floor((r.nextDouble()*StaticVars.RANGE*StaticVars.PRECISION)-StaticVars.RANGE*StaticVars.PRECISION/2)/StaticVars.PRECISION;
 	}
 	
 	public Vertex(double newX, double newY, double newZ) {

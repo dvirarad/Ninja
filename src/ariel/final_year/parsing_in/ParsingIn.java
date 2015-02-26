@@ -11,6 +11,7 @@ import ariel.final_year.expression.SyntaxException;
 import ariel.final_year.main_algorithm.ExprCondition;
 
 public class ParsingIn {
+	
 	private int numOfVertices;
 	private boolean[][] adjacencyMat;
 	private ExprCondition condition;
@@ -60,9 +61,5 @@ public class ParsingIn {
 	
 	public ExprCondition getCondition() {
 		return condition;
-	}
-	public static void main(String[] args) {
-		File f = new File("input.xml");
-		new ParsingIn(f);
 	}
 }

@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 import ariel.final_year.main_algorithm.Vertex;
 import ariel.final_year.utilities.StaticMethods;
-import ariel.final_year.utilities.Vars;
+import ariel.final_year.utilities.StaticVars;
 
 public class ParsingOut {
 	
@@ -35,7 +35,7 @@ public class ParsingOut {
 		vertices.addAll(newVertices);
 
 		outputBuffer = new StringBuffer();
-		File f = new File(Vars.TEMPLATE);
+		File f = new File(StaticVars.TEMPLATE);
 		BufferedReader br;
 		String line;
 		try {
@@ -82,9 +82,9 @@ public class ParsingOut {
 	 */
 	private void addExtrusion(Vertex vertexI, Vertex vertexJ) {
 		String spineContent = vertexI.x + " " + vertexI.y + " " + vertexI.z + ", " + vertexJ.x + " " + vertexJ.y + " " + vertexJ.z;
-		String spine = Vars.E_SPINE + spineContent;
+		String spine = StaticVars.E_SPINE + spineContent;
 		
-		outputBuffer.append(Vars.E_START + spine + Vars.E_END);
+		outputBuffer.append(StaticVars.E_START + spine + StaticVars.E_END);
 	}
 	
 	/**
@@ -105,9 +105,9 @@ public class ParsingOut {
 	 */
 	private void addVertex(Vertex v) {
 		String translationContent = v.x + " " + v.y + " " + v.z;
-		String translation = Vars.V_TRANSLATION + translationContent;
+		String translation = StaticVars.V_TRANSLATION + translationContent;
 		
-		outputBuffer.append(Vars.V_START + translation + Vars.V_END);
+		outputBuffer.append(StaticVars.V_START + translation + StaticVars.V_END);
 	}
 	
 	/**
@@ -133,23 +133,5 @@ public class ParsingOut {
 			e.printStackTrace();
 		}
 		return fileName;
-	}
-
-	public static void main(String[] args) {
-		ArrayList<Vertex> vertices = new ArrayList<Vertex>();
-		vertices.add(new Vertex(1, 2, 3));
-		vertices.add(new Vertex(1, 3, 4));
-		vertices.add(new Vertex(-1, -2, -3));
-		
-		boolean[][] adjacencyMat = new boolean[][]{
-				{false, true, true},
-				{true, false, false},
-				{true, false, false}
-		};
-		
-		ParsingOut po = new ParsingOut(adjacencyMat,vertices);
-		po.addExtrusions();
-		po.addVertices();
-		po.generateOutput();
 	}
 }

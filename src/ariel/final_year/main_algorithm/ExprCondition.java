@@ -6,6 +6,7 @@ import ariel.final_year.expression.SyntaxException;
 import ariel.final_year.expression.Variable;
 
 public class ExprCondition {
+	
 	private String stringExpr;
 	private Expr expr;
 

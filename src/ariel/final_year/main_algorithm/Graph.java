@@ -93,7 +93,6 @@ public class Graph {
 		for (SurfaceEquation surface : surfaces) 
 			if (surface.includesVertex(ver)) 
 				return true;
-
 		return false;
 	}
 
@@ -102,12 +101,11 @@ public class Graph {
 	 * @param n
 	 * @return
 	 */
-	public static int computeNumOfPlanes(int numOfVertices) {
+	private static int computeNumOfPlanes(int numOfVertices) {
 		int res = 1;
 		for (int i = 3; i < numOfVertices; i++) {
 			res += (i*(i-1))/2;
 		}
-
 		return res;
 	}
 
@@ -138,7 +136,7 @@ public class Graph {
 	 * @param string file name
 	 */
 	@SuppressWarnings("unused")
-	private void resultLog(String filename) {
+	public void resultLog(String filename) {
 		try{
 			String fileName =filename;
 
