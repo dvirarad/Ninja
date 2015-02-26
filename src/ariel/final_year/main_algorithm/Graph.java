@@ -52,17 +52,20 @@ public class Graph {
 	 */
 	private void doYourThing() {
 		Vertex temp;
-
+		
 		for (int i = 0; i < numOfVertices; i++) {
-			int j =0;
-			do {
+			boolean conditionIsMet = false;
+			int j = 0;
+			while (!conditionIsMet) {
 				temp = new Vertex();
+				if (!belongsToDefinedPlane(temp) && condition.isMet(temp)) {
+					addSufaceEquations(temp);
+					vertices.add(new Vertex(temp));
+					conditionIsMet = true;
+				}
 				if (maxVertexSearch < ++j) 
 					maxVertexSearch = j;
-			} while (belongsToDefinedPlane(temp) && !condition.isMet(temp));			
-
-			addSufaceEquations(temp);
-			vertices.add(new Vertex(temp));
+			}			
 		}
 	}
 	
@@ -135,20 +138,15 @@ public class Graph {
 	 * max time to find free vertex
 	 * @param string file name
 	 */
-	@SuppressWarnings("unused")
 	public void resultLog(String filename) {
 		try{
 			String fileName =filename;
-
 			File file = new File(fileName+".txt");
-
-			// if file doesnt exists, then create it
 			if (!file.exists()) {
 				file.createNewFile();
 			}
-
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
-			BufferedWriter bw = new BufferedWriter(fw);
+			BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile()));
+			
 			bw.write("Graph 3D");
 			bw.newLine();
 			bw.write("Number of vertices: "+ numOfVertices);
@@ -162,8 +160,6 @@ public class Graph {
 			bw.write("Max number of points checked: "+ maxVertexSearch);
 
 			bw.close();
-
-			System.out.println("Done");
 
 		} catch (IOException e) {
 			e.printStackTrace();

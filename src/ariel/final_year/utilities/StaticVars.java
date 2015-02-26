@@ -4,7 +4,8 @@ public class StaticVars {
 	public static final int AFTER_DOT 			= 100;
 	public static final int RANGE 				= 10; // range to set the coordinates in
 	public static final int PRECISION 			= 100; // numbers after dot
-	
+
+	public static final String FORMATTER_PATTERN = "#0.00";
 	public static final String TEMPLATE 		= "output_template.wrl";
 	
 	public static final String X_SECTION_XL 	= "1.0 0.00,"

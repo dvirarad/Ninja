@@ -1,0 +1,612 @@
+#VRML V2.0 utf8
+
+# EDGES FORMATTING
+Switch {
+	choice [
+		DEF lookE Appearance {
+			material Material {
+				diffuseColor 1.0 1.0 1.0
+				ambientIntensity 0.0
+				emissiveColor 0.0 0.0 0.0
+				specularColor 0.0 0.0 0.0
+				shininess 0.0
+				transparency 0.0
+			} # end material
+		} # end appearance
+		DEF lookV Appearance {
+			material Material {
+				diffuseColor 255.0 140.0 0.0
+			} # end material
+		} # end appearance
+	] # end choice
+} # end switch
+
+# AXES
+PROTO SimpleAxis [field SFNode axisAppearance NULL] {
+  Transform {
+    translation 0 5 0
+    children [
+      Shape {
+        appearance IS axisAppearance
+        geometry Cylinder {radius 0.01 height 10}
+      }
+      Transform {
+        translation 0 5 0
+        children [
+          Shape {
+            appearance IS axisAppearance
+            geometry Cone {bottomRadius 0.025 height 0.1}
+          }
+        ]
+      }
+    ]
+  }
+}
+# Red X-axis
+Transform {
+  rotation 0 0 1 -1.57080
+  children [ 
+    SimpleAxis {
+      axisAppearance Appearance {material Material {diffuseColor 1 0 0}}
+    } 
+  ]
+}
+# Green X-axis
+Transform {
+  children [ 
+    SimpleAxis {
+      axisAppearance Appearance {material Material {diffuseColor 0 1 0}}
+    } 
+  ]
+}
+# Blue Z-axis
+Transform {
+  rotation 1 0 0 1.57080  
+  children [ 
+    SimpleAxis {
+      axisAppearance Appearance {material Material {diffuseColor 0 0 1}}
+    } 
+  ]
+}
+# -----START VERTICES-----
+Transform {
+	translation 4.08 -4.6 -0.85
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 4.87 -0.33 -1.49
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -3.57 0.48 -1.04
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -0.2 -0.95 -2.26
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -0.82 2.87 0.42
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 2.59 1.29 3.98
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 2.41 1.05 4.45
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 2.32 1.6 4.41
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -4.11 -2.39 -2.37
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 3.23 2.93 0.94
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -0.65 -0.9 2.9
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -0.94 -3.87 -2.64
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 4.5 1.12 -3.81
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 4.16 -2.22 4.79
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 1.91 3.99 -4.58
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 3.38 1.12 -0.69
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -0.94 -3.16 -1.57
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -0.09 -1.84 0.11
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -2.7 -0.45 -1.28
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 0.16 -3.42 4.42
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -0.3 -3.79 4.9
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -3.45 -2.09 3.73
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 4.87 -2.2 4.37
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 2.73 -2.31 -3.45
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -2.51 -0.23 4.13
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 0.18 -0.81 -4.68
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -2.57 -3.55 -4.32
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -0.8 -0.68 -2.47
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 2.99 -1.19 4.83
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -4.27 3.41 -2.69
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -3.12 -1.85 2.92
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 1.92 -4.28 0.15
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 2.28 3.62 -3.72
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -3.5 -3.43 -0.89
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 1.72 -1.02 -4.7
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 0.1 -2.48 -1.05
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 0.63 4.88 -4.57
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 2.06 -2.45 1.48
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -2.54 3.65 2.54
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -4.82 -1.98 3.55
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 2.85 1.14 1.05
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 3.6 -0.93 4.27
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -3.46 -0.21 4.96
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -4.75 -2.82 3.27
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 4.79 -1.83 4.29
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -1.71 4.68 -2.67
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 2.99 2.6 3.29
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -1.24 0.47 2.41
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -0.43 1.32 -0.12
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 4.03 0.78 3.42
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 2.34 -3.56 -3.25
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -2.84 3.44 1.92
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -0.24 1.55 3.8
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -1.1 3.51 -1.74
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -2.51 -3.37 2.5
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 3.09 1.25 -1.36
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 0.89 3.83 -3.54
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -4.84 0.98 -3.86
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 3.79 2.71 4.73
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -0.47 -2.03 -0.41
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 0.02
+		} # end sphere
+	} # end shape
+} # end transform
+# -----END VERTICES-----
