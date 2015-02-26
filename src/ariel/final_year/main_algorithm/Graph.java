@@ -9,8 +9,8 @@ import ariel.final_year.expression.SyntaxException;
 
 public class Graph {
 
-	private int 			numOfVertices;
-	private ExprCondition 	condition;
+	private int 						numOfVertices;
+	private ExprCondition 				condition;
 
 	private ArrayList<SurfaceEquation> 	surfaces;
 	private ArrayList<Vertex> 			vertices;
@@ -50,7 +50,7 @@ public class Graph {
 	/**
 	 * assign coordinates to vertices
 	 */
-	public void doYourThing() {
+	private void doYourThing() {
 		Vertex temp;
 
 		for (int i = 0; i < numOfVertices; i++) {
@@ -59,7 +59,6 @@ public class Graph {
 				temp = new Vertex();
 				if (maxVertexSearch < ++j) 
 					maxVertexSearch = j;
-				if(!condition.isMet(temp)) System.out.println("AGAIN");
 			} while (belongsToDefinedPlane(temp) && !condition.isMet(temp));			
 
 			addSufaceEquations(temp);
