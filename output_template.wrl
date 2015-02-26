@@ -3,7 +3,7 @@
 # EDGES FORMATTING
 Switch {
 	choice [
-		DEF look Appearance {
+		DEF lookE Appearance {
 			material Material {
 				diffuseColor 1.0 1.0 1.0
 				ambientIntensity 0.0
@@ -11,6 +11,11 @@ Switch {
 				specularColor 0.0 0.0 0.0
 				shininess 0.0
 				transparency 0.0
+			} # end material
+		} # end appearance
+		DEF lookV Appearance {
+			material Material {
+				diffuseColor 255.0 140.0 0.0
 			} # end material
 		} # end appearance
 	] # end choice
@@ -23,14 +28,14 @@ PROTO SimpleAxis [field SFNode axisAppearance NULL] {
     children [
       Shape {
         appearance IS axisAppearance
-        geometry Cylinder {radius 0.1 height 10}
+        geometry Cylinder {radius 0.01 height 10}
       }
       Transform {
         translation 0 5.5 0
         children [
           Shape {
             appearance IS axisAppearance
-            geometry Cone {bottomRadius 0.25 height 1}
+            geometry Cone {bottomRadius 0.025 height 0.1}
           }
         ]
       }
