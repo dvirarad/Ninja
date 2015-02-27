@@ -21,10 +21,11 @@ public class Test1 {
 			ParsingOut po = new ParsingOut(pi.getAdjacencyMat(), g.getVertices());
 			String fileName = po.generateOutput();
 			
-			if(StaticMethods.isWindows())
+			if(StaticMethods.isWindows()) {
 				new ProcessBuilder(StaticVars.WIN_EXEC, fileName).start();
-			else if(StaticMethods.isMac())
-				new ProcessBuilder("open", StaticVars.MAC_EXEC, fileName).start();		
+			} else if(StaticMethods.isMac()) {
+				new ProcessBuilder("open", StaticVars.MAC_EXEC, fileName).start();
+			}
 			
 		} catch (SyntaxException e) {
 			// TODO Auto-generated catch block
