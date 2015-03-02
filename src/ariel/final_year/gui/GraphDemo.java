@@ -2,8 +2,10 @@ package ariel.final_year.gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -11,10 +13,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.Component;
+import java.awt.Rectangle;
+import javax.swing.border.BevelBorder;
 
-public class GraphDemo extends JFrame {
+public class GraphDemo extends JFrame  implements	ActionListener,
+ListSelectionListener{
 
 	private JPanel contentPane;
 	private JTextField tfnumVertex;
@@ -26,9 +35,12 @@ public class GraphDemo extends JFrame {
 	private int vertexSize;
 	private String condition;
 	private JButton btnDemo;
+
 	private JList list ;
 	private JPanel panel;
-	
+	private Vector<String> matrixContaion;
+	private JScrollPane scroolPaneMatrix;
+
 	/**
 	 * Launch the application.
 	 */
@@ -48,7 +60,7 @@ public class GraphDemo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GraphDemo() {
+	public GraphDemo()  {
 
 
 
@@ -69,7 +81,7 @@ public class GraphDemo extends JFrame {
 		tfnumVertex.setColumns(10);
 
 		lblCondition = new JLabel("Condition");
-		lblCondition.setBounds(10, 57, 46, 14);
+		lblCondition.setBounds(10, 57, 66, 14);
 		contentPane.add(lblCondition);
 
 		tfCondition = new JTextField();
@@ -79,64 +91,77 @@ public class GraphDemo extends JFrame {
 
 
 		btnShow = new JButton("Show");
-		btnShow.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				updateMatrix();
-			}
-
-		});
 		btnShow.setBounds(117, 101, 89, 23);
+		btnShow.addActionListener(this);
 		contentPane.add(btnShow);
 
 		btnDemo = new JButton("Demo");
-		btnDemo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				condition = tfCondition.getText();
-				vertexSize = Integer.valueOf(tfnumVertex.getText());
-				graphApp = new GraphApplication(vertexSize, condition);
-			}
-		});
 		btnDemo.setBounds(120, 144, 89, 23);
+		btnDemo.addActionListener(this);
 		contentPane.add(btnDemo);
 
 		panel = new JPanel();
-		panel.setBounds(216, 24, 185, 170);
+		panel.setBounds(216, 24, 208, 185);
 		contentPane.add( panel );
-		
-		
+
+		matrixContaion = new Vector<String>();
+
+
+
+		list = new JList(matrixContaion);
+		list.setBounds(216,24,208,185);
+		list.addListSelectionListener( this );
+		//panel.add(list, BorderLayout.CENTER);
+
+		scroolPaneMatrix = new JScrollPane(list);
+		scroolPaneMatrix.setBounds(10, 10, 20, 50);
+		panel.add(scroolPaneMatrix,BorderLayout.CENTER);
 	
-	   
-	    String[] data  = {"1","2","3","4"};
-	    DefaultListModel model = new DefaultListModel();
-	;
-		model.addElement(data[1]);
-		model.addElement(data[3]);
-		model.addElement(data[2]);
-		model.addElement(data[0]);
-		list = new JList(model);
-		panel.add(list, BorderLayout.CENTER);
 
 	}
 
 
-	private void updateMatrix() {
-		String[] data  = {"1","2","3","4","5"};
-		DefaultListModel<String> model = new DefaultListModel();
-		model.addElement(data[2]);
-		model.addElement(data[1]);
-		model.addElement(data[3]);
-		model.addElement(data[4]);
-		model.addElement(data[0]);
-	//	vertexSize = Integer.valueOf(tfnumVertex.getText());
-	//	String[] temp = GraphStyle.toString(GraphStyle.compliteGraph(vertexSize));
-		list = new JList(model);
-	//	panel.add(list, BorderLayout.CENTER);
-		for (int i = 0; i < data.length; i++) {
-			System.out.println(data[i]);
-		}
-		
 
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		// Handler for list selection changes
+
+		// See if this is a listbox selection and the
+		// event stream has settled
+		if( e.getSource() == list
+				&& !e.getValueIsAdjusting() )
+		{
+			System.out.println("hello");
+		}
+
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if( e.getSource() == btnDemo )
+		{
+			
+			condition = tfCondition.getText();
+			vertexSize = Integer.valueOf(tfnumVertex.getText());
+			graphApp = new GraphApplication(vertexSize, condition);
+			
+			
+			
+		}
+		if (e.getSource() == btnShow) {
+			matrixContaion = new Vector<String>();
+			vertexSize = Integer.valueOf(tfnumVertex.getText());
+			String[] temp = GraphStyle.toString(GraphStyle.compliteGraph(vertexSize));
+			
+			for (int i = 0; i < temp.length; i++) 
+				matrixContaion.addElement(temp[i]);	
+			
+			list.setListData( matrixContaion );
+			/*scroolPaneMatrix.revalidate();
+			scroolPaneMatrix.repaint();*/
+		}	
 
 	}
 
