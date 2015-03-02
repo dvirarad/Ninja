@@ -15,6 +15,39 @@ public class GraphStyle {
 		return graph;
 	}
 
+	public static boolean[][] randomGraph(int n) {
+		
+		boolean[][] graph = new boolean[n][n];
+		
+		for (int i = 0; i < graph.length; i++) {
+			for (int j = 0; j < graph.length; j++) {
+				int rand = (int) (Math.random()*2);
+				if (rand==1) 
+					graph[i][j] = true;
+				
+				else
+					graph[i][j] = false;
+			}
+		}
+		return graph;
+	}
+	public static boolean[][] modGraph3(int n) {
+boolean[][] graph = new boolean[n][n];
+		
+		for (int i = 0; i < graph.length; i++) {
+			for (int j = 0; j < graph.length; j++) {
+				int rand = (int) (Math.random()*2);
+				if ((i+j)%3 ==1) 
+					graph[i][j] = true;
+				
+				else
+					graph[i][j] = false;
+			}
+		}
+		return graph;
+		
+	}
+
 	public static String[] toString(boolean[][] graphMatrix) {
 		String[][] view = new String[graphMatrix.length][graphMatrix.length];
 		String ans[] = new String[graphMatrix.length];
@@ -32,6 +65,10 @@ public class GraphStyle {
 		}
 		return ans;
 	}
+
+
+	
+	
 
 
 

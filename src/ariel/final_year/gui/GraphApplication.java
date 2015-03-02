@@ -15,8 +15,9 @@ public class GraphApplication {
 	private ExprCondition exCondition;
 	private GraphStyle[] graphStyle;
 	private boolean[][] adjacencyMatrix;
+	
 
-	public GraphApplication(int vs, String expration) {
+	public GraphApplication(int vs, String expration,boolean[][] newadjacencyMat) {
 		
 		
 		this.vertexSize = vs;
@@ -25,7 +26,7 @@ public class GraphApplication {
 
 			this.exCondition = new ExprCondition(expration);
 			
-			fillMatrix();
+			adjacencyMatrix = newadjacencyMat;
 			
 			Graph graph = new Graph(vertexSize, exCondition);
 			ParsingOut po = new ParsingOut(adjacencyMatrix,graph.getVertices());
@@ -72,18 +73,6 @@ public class GraphApplication {
 		this.adjacencyMatrix = adjacencyMatrix;
 	}
 
-	private void fillMatrix() {
-	
-		adjacencyMatrix = GraphStyle.compliteGraph(vertexSize);
-		
-	}
-	
-	
 
-	public static void main(String[] args) {
 
-		int vs = 10;
-		String expration = "x^2 + y^2 + z^2 - 10";
-		GraphApplication ga = new GraphApplication(vs, expration);
-	}
 }

@@ -2,13 +2,13 @@ package ariel.final_year.gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.ScrollPane;
+import java.awt.ItemSelectable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -18,29 +18,39 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import java.awt.Component;
-import java.awt.Rectangle;
-import javax.swing.border.BevelBorder;
 
 public class GraphDemo extends JFrame  implements	ActionListener,
 ListSelectionListener{
 
 	private JPanel contentPane;
-	private JTextField tfnumVertex;
 	private JLabel lblCondition;
-	private JTextField tfCondition;
-	private JButton btnShow;
 
 	private GraphApplication graphApp;
 	private int vertexSize;
 	private String condition;
 	private JButton btnDemo;
 
+// List staff
 	private JList list ;
 	private JPanel panel;
 	private Vector<String> matrixContaion;
 	private JScrollPane scroolPaneMatrix;
-
+	
+	
+	//Graph Style
+	private JComboBox<String> comboBox;
+	private  String[] graphStyle = {"Complite Graph","modGraph3 s","randomGraph"};
+	private String[] temp;
+	private boolean[][] adjacencyMat;
+	
+	//number of vertex
+	private String[]  numbers;
+	private JComboBox<String> cbNumberOfVertex;
+	
+	private String[] equationCondition;
+	private JComboBox cbCondition;
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -61,9 +71,26 @@ ListSelectionListener{
 	 * Create the frame.
 	 */
 	public GraphDemo()  {
+		
+		initilaize();
+		
+		setLook();
+	
+
+	}
 
 
 
+
+	private void initilaize() {
+		vertexSize =1;
+		numbers = StaticData.numberOfVertex();
+		equationCondition = StaticData.ListOfEquation();
+		condition = equationCondition[0];
+		
+	}
+
+	private void setLook() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -75,28 +102,12 @@ ListSelectionListener{
 		lblNumberOfVertex.setBounds(10, 24, 100, 14);
 		contentPane.add(lblNumberOfVertex);
 
-		tfnumVertex = new JTextField();
-		tfnumVertex.setBounds(120, 21, 86, 20);
-		contentPane.add(tfnumVertex);
-		tfnumVertex.setColumns(10);
-
 		lblCondition = new JLabel("Condition");
-		lblCondition.setBounds(10, 57, 66, 14);
+		lblCondition.setBounds(10, 73, 66, 14);
 		contentPane.add(lblCondition);
 
-		tfCondition = new JTextField();
-		tfCondition.setBounds(120, 54, 86, 20);
-		contentPane.add(tfCondition);
-		tfCondition.setColumns(10);
-
-
-		btnShow = new JButton("Show");
-		btnShow.setBounds(117, 101, 89, 23);
-		btnShow.addActionListener(this);
-		contentPane.add(btnShow);
-
 		btnDemo = new JButton("Demo");
-		btnDemo.setBounds(120, 144, 89, 23);
+		btnDemo.setBounds(117, 158, 89, 23);
 		btnDemo.addActionListener(this);
 		contentPane.add(btnDemo);
 
@@ -116,12 +127,24 @@ ListSelectionListener{
 		scroolPaneMatrix = new JScrollPane(list);
 		scroolPaneMatrix.setBounds(10, 10, 20, 50);
 		panel.add(scroolPaneMatrix,BorderLayout.CENTER);
-	
-
+		
+		
+		comboBox = new JComboBox(graphStyle);
+		comboBox.setBounds(86, 110, 123, 20);
+		contentPane.add(comboBox);
+		comboBox.addActionListener(this);
+		
+		cbNumberOfVertex = new JComboBox(numbers);
+		cbNumberOfVertex.setBounds(170, 15, 36, 33);
+		contentPane.add(cbNumberOfVertex);
+		cbNumberOfVertex.addActionListener(this);
+		
+		cbCondition = new JComboBox(equationCondition);
+		cbCondition.setBounds(64, 71, 142, 19);
+		contentPane.add(cbCondition);
+		cbCondition.addActionListener(this);
+		
 	}
-
-
-
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
@@ -140,30 +163,63 @@ ListSelectionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if( e.getSource() == btnDemo )
+		if( e.getSource() == btnDemo )//press to open VRML Graph
 		{
 			
-			condition = tfCondition.getText();
-			vertexSize = Integer.valueOf(tfnumVertex.getText());
-			graphApp = new GraphApplication(vertexSize, condition);
+			
+		
+			graphApp = new GraphApplication(vertexSize, condition,adjacencyMat);
 			
 			
 			
 		}
-		if (e.getSource() == btnShow) {
-			matrixContaion = new Vector<String>();
-			vertexSize = Integer.valueOf(tfnumVertex.getText());
-			String[] temp = GraphStyle.toString(GraphStyle.compliteGraph(vertexSize));
+	
+		
+		if (e.getSource() == comboBox) {
+	
+			 ItemSelectable is = (ItemSelectable)e.getSource();
+		     String graph = selectedString(is);
+		     
+		     if (graph.equals(graphStyle[0])) {
+		    	 adjacencyMat = GraphStyle.compliteGraph(vertexSize);
+		    	 
+			}
+		     if (graph.equalsIgnoreCase(graphStyle[1])){
+		    	 adjacencyMat = GraphStyle.modGraph3(vertexSize);
+		    	 
+		     }
+		     if (graph.equalsIgnoreCase(graphStyle[2])){
+		    	 adjacencyMat = GraphStyle.randomGraph(vertexSize);
+		    	 
+		     }
+		     
+		     temp = GraphStyle.toString(adjacencyMat);
+		     matrixContaion = new Vector<String>();
+				
+				for (int i = 0; i < temp.length; i++) 
+					matrixContaion.addElement(temp[i]);	
+				
+				list.setListData( matrixContaion );
+		}
+		
+		if (e.getSource() == cbNumberOfVertex) {
+			vertexSize = cbNumberOfVertex.getSelectedIndex() +1;
 			
-			for (int i = 0; i < temp.length; i++) 
-				matrixContaion.addElement(temp[i]);	
 			
-			list.setListData( matrixContaion );
-			/*scroolPaneMatrix.revalidate();
-			scroolPaneMatrix.repaint();*/
-		}	
+		}
+		
+		if (e.getSource() == cbCondition) {
+			condition =equationCondition[ cbCondition.getSelectedIndex()];
+			
+			System.out.println(condition);
+		}
+		
+		
 
 	}
-
+	static private String selectedString(ItemSelectable is) {
+	    Object selected[] = is.getSelectedObjects();
+	    return ((selected.length == 0) ? "null" : (String)selected[0]);
+	  } 
 }
 
