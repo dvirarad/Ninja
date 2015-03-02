@@ -120,13 +120,14 @@ ListSelectionListener{
 
 
 		list = new JList(matrixContaion);
-		list.setBounds(216,24,208,185);
+	//	list.setBounds(216,24,208,185);
 		list.addListSelectionListener( this );
+		panel.setLayout(null);
 		//panel.add(list, BorderLayout.CENTER);
 
 		scroolPaneMatrix = new JScrollPane(list);
-		scroolPaneMatrix.setBounds(10, 10, 20, 50);
-		panel.add(scroolPaneMatrix,BorderLayout.CENTER);
+		scroolPaneMatrix.setBounds(-25, 5, 258, 130);
+		panel.add(scroolPaneMatrix);
 		
 		
 		comboBox = new JComboBox(graphStyle);
@@ -140,6 +141,7 @@ ListSelectionListener{
 		cbNumberOfVertex.addActionListener(this);
 		
 		cbCondition = new JComboBox(equationCondition);
+		cbCondition.setEditable(true);
 		cbCondition.setBounds(64, 71, 142, 19);
 		contentPane.add(cbCondition);
 		cbCondition.addActionListener(this);
