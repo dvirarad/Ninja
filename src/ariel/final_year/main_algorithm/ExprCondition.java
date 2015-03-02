@@ -35,6 +35,6 @@ public class ExprCondition {
 		y.setValue(v.y);
 		z.setValue(v.z);
 		
-		return expr.value() < 0;
+		return expr.value() <= 0;
 	}
 }
