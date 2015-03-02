@@ -16,10 +16,19 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.ScrollPaneConstants;
 
-public class GraphDemo extends JFrame  implements	ActionListener,
+import java.awt.Rectangle;
+
+import javax.swing.JSpinner;
+
+import java.awt.Font;
+
+public class GraphDemo extends JFrame  implements	ActionListener, ChangeListener,
 ListSelectionListener{
 
 	private JPanel contentPane;
@@ -30,27 +39,27 @@ ListSelectionListener{
 	private String condition;
 	private JButton btnDemo;
 
-// List staff
+	// List staff
 	private JList list ;
 	private JPanel panel;
 	private Vector<String> matrixContaion;
 	private JScrollPane scroolPaneMatrix;
-	
-	
+
+
 	//Graph Style
 	private JComboBox<String> comboBox;
 	private  String[] graphStyle = {"Complite Graph","modGraph3 s","randomGraph"};
 	private String[] temp;
 	private boolean[][] adjacencyMat;
-	
+
 	//number of vertex
 	private String[]  numbers;
-	private JComboBox<String> cbNumberOfVertex;
-	
+	JSpinner spinnerVertex ;
+
 	private String[] equationCondition;
 	private JComboBox cbCondition;
-	
-	
+
+
 	/**
 	 * Launch the application.
 	 */
@@ -71,11 +80,11 @@ ListSelectionListener{
 	 * Create the frame.
 	 */
 	public GraphDemo()  {
-		
+
 		initilaize();
-		
+
 		setLook();
-	
+
 
 	}
 
@@ -87,7 +96,7 @@ ListSelectionListener{
 		numbers = StaticData.numberOfVertex();
 		equationCondition = StaticData.ListOfEquation();
 		condition = equationCondition[0];
-		
+
 	}
 
 	private void setLook() {
@@ -103,49 +112,56 @@ ListSelectionListener{
 		contentPane.add(lblNumberOfVertex);
 
 		lblCondition = new JLabel("Condition");
-		lblCondition.setBounds(10, 73, 66, 14);
+		lblCondition.setBounds(166, 24, 66, 14);
 		contentPane.add(lblCondition);
 
 		btnDemo = new JButton("Demo");
-		btnDemo.setBounds(117, 158, 89, 23);
+		btnDemo.setBounds(293, 58, 89, 23);
 		btnDemo.addActionListener(this);
 		contentPane.add(btnDemo);
 
 		panel = new JPanel();
-		panel.setBounds(216, 24, 208, 185);
+		panel.setBounds(new Rectangle(30, 60, 200, 200));
+		panel.setBounds(40, 92, 299, 158);
 		contentPane.add( panel );
 
 		matrixContaion = new Vector<String>();
-
-
-
-		list = new JList(matrixContaion);
-	//	list.setBounds(216,24,208,185);
-		list.addListSelectionListener( this );
 		panel.setLayout(null);
 		//panel.add(list, BorderLayout.CENTER);
 
-		scroolPaneMatrix = new JScrollPane(list);
-		scroolPaneMatrix.setBounds(-25, 5, 258, 130);
-		panel.add(scroolPaneMatrix);
-		
-		
+		list = new JList(matrixContaion);
+		list.setBounds(10, 0, 250, 150);
+		//	panel.add(list);
+		//	list.setBounds(216,24,208,185);
+		list.addListSelectionListener( this );
+
+		scroolPaneMatrix = new JScrollPane();
+		scroolPaneMatrix.setBounds(new Rectangle(10, 0, 250, 150));
+		scroolPaneMatrix.setViewportView(list);
+		panel.add(scroolPaneMatrix,BorderLayout.CENTER);
+
+
+
+
+
+
 		comboBox = new JComboBox(graphStyle);
-		comboBox.setBounds(86, 110, 123, 20);
+		comboBox.setBounds(33, 59, 123, 20);
 		contentPane.add(comboBox);
 		comboBox.addActionListener(this);
-		
-		cbNumberOfVertex = new JComboBox(numbers);
-		cbNumberOfVertex.setBounds(170, 15, 36, 33);
-		contentPane.add(cbNumberOfVertex);
-		cbNumberOfVertex.addActionListener(this);
-		
+
 		cbCondition = new JComboBox(equationCondition);
 		cbCondition.setEditable(true);
-		cbCondition.setBounds(64, 71, 142, 19);
+		cbCondition.setBounds(240, 24, 142, 19);
 		contentPane.add(cbCondition);
 		cbCondition.addActionListener(this);
-		
+
+		spinnerVertex = new JSpinner();
+		spinnerVertex.setFont(new Font("David", Font.BOLD, 13));
+		spinnerVertex.setBounds(112, 15, 44, 33);
+		contentPane.add(spinnerVertex);
+		spinnerVertex.addChangeListener(this);
+
 	}
 
 	@Override
@@ -167,61 +183,53 @@ ListSelectionListener{
 	public void actionPerformed(ActionEvent e) {
 		if( e.getSource() == btnDemo )//press to open VRML Graph
 		{
-			
-			
-		
 			graphApp = new GraphApplication(vertexSize, condition,adjacencyMat);
-			
-			
-			
 		}
-	
-		
+
+
 		if (e.getSource() == comboBox) {
-	
-			 ItemSelectable is = (ItemSelectable)e.getSource();
-		     String graph = selectedString(is);
-		     
-		     if (graph.equals(graphStyle[0])) {
-		    	 adjacencyMat = GraphStyle.compliteGraph(vertexSize);
-		    	 
+			ItemSelectable is = (ItemSelectable)e.getSource();
+			String graph = selectedString(is);
+			if (graph.equals(graphStyle[0])) {
+				adjacencyMat = GraphStyle.compliteGraph(vertexSize);	 
 			}
-		     if (graph.equalsIgnoreCase(graphStyle[1])){
-		    	 adjacencyMat = GraphStyle.modGraph3(vertexSize);
-		    	 
-		     }
-		     if (graph.equalsIgnoreCase(graphStyle[2])){
-		    	 adjacencyMat = GraphStyle.randomGraph(vertexSize);
-		    	 
-		     }
-		     
-		     temp = GraphStyle.toString(adjacencyMat);
-		     matrixContaion = new Vector<String>();
-				
-				for (int i = 0; i < temp.length; i++) 
-					matrixContaion.addElement(temp[i]);	
-				
-				list.setListData( matrixContaion );
+			if (graph.equalsIgnoreCase(graphStyle[1])){
+				adjacencyMat = GraphStyle.modGraph3(vertexSize);
+			}
+			if (graph.equalsIgnoreCase(graphStyle[2])){
+				adjacencyMat = GraphStyle.randomGraph(vertexSize);
+			}
+			temp = GraphStyle.toString(adjacencyMat);
+			matrixContaion = new Vector<String>();
+			for (int i = 0; i < temp.length; i++) 
+				matrixContaion.addElement(temp[i]);	
+			list.setListData( matrixContaion );
 		}
-		
-		if (e.getSource() == cbNumberOfVertex) {
-			vertexSize = cbNumberOfVertex.getSelectedIndex() +1;
-			
-			
-		}
-		
-		if (e.getSource() == cbCondition) {
-			condition =equationCondition[ cbCondition.getSelectedIndex()];
-			
-			System.out.println(condition);
-		}
-		
+
 		
 
+		if (e.getSource() == cbCondition) {
+			condition =equationCondition[ cbCondition.getSelectedIndex()];
+
+			System.out.println(condition);
+		}
+
+
+
 	}
+	@Override
+	public void stateChanged(ChangeEvent e) {
+
+		if(e.getSource() == spinnerVertex){
+			vertexSize = Integer.valueOf(spinnerVertex.getValue().toString());
+			System.out.println(vertexSize);
+		}
+
+	}
+
 	static private String selectedString(ItemSelectable is) {
-	    Object selected[] = is.getSelectedObjects();
-	    return ((selected.length == 0) ? "null" : (String)selected[0]);
-	  } 
+		Object selected[] = is.getSelectedObjects();
+		return ((selected.length == 0) ? "null" : (String)selected[0]);
+	} 
 }
 
