@@ -1,4 +1,6 @@
 package ariel.final_year.main_algorithm;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Vector;
 
 import ariel.final_year.utilities.StaticVars;
@@ -11,7 +13,8 @@ public class SurfaceEquation {
 	private double a,b,c,d;
 
 	public SurfaceEquation(Vertex v1,Vertex v2, Vertex v3){
-
+		NumberFormat nf = new DecimalFormat(StaticVars.FORMATTER_PATTERN);
+		
 		Vector<Double> v1_v2 = new Vector<Double>(3);
 
 		v1_v2.add(0, v2.x-v1.x);
@@ -24,16 +27,14 @@ public class SurfaceEquation {
 		v1_v3.add(2,v3.z-v1.z);
 
 		a = v1_v2.get(1)*v1_v3.get(2) - v1_v2.get(2)*v1_v3.get(1);
-		a =  Math.floor(a*StaticVars.AFTER_DOT)/StaticVars.AFTER_DOT;
-		
 		b = v1_v2.get(2)*v1_v3.get(0) - v1_v2.get(0)*v1_v3.get(2);
-		b =  Math.floor(b*StaticVars.AFTER_DOT)/StaticVars.AFTER_DOT;
-		
 		c = v1_v2.get(0)*v1_v3.get(1) - v1_v2.get(1)*v1_v3.get(0);
-		c =  Math.floor(c*StaticVars.AFTER_DOT)/StaticVars.AFTER_DOT;
-		
 		d = -(a*v1.x +b*v1.y + c*v1.z);		
-		d =  Math.floor(d*StaticVars.AFTER_DOT)/StaticVars.AFTER_DOT;
+		
+		a = Double.valueOf(nf.format(a));
+		b = Double.valueOf(nf.format(b));
+		c = Double.valueOf(nf.format(c));
+		d = Double.valueOf(nf.format(d));
 	}
 	
 	/**
