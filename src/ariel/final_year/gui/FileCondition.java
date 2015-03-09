@@ -42,21 +42,13 @@ public class FileCondition {
 
 
 	private void getFormola(String name) {
-
-
 		BufferedReader br = null;
-
 		try {
-
 			String sCurrentLine;
-
 			br = new BufferedReader(new FileReader(folder.getPath()+File.separator+name));
-
 			if((sCurrentLine = br.readLine()) != null){
 				conditionList.add(new Node(name,sCurrentLine));
 			}
-
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -66,7 +58,6 @@ public class FileCondition {
 				ex.printStackTrace();
 			}
 		}
-
 	}
 
 

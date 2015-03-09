@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.ItemSelectable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.Vector;
 
 import javax.swing.JButton;
@@ -32,9 +33,9 @@ import javax.swing.JSpinner;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Color;
 
-public class GraphDemo extends JFrame  implements	ActionListener, ChangeListener,
-ListSelectionListener{
+public class GraphDemo extends JFrame  implements	ActionListener, ChangeListener{
 
 	private final String DEFULT_CONdITIOM = "x + y + z - 10";
 	private final int DEFULT_VERTEX_SIZE =1;
@@ -50,17 +51,12 @@ ListSelectionListener{
 	private String condition;
 	private JButton btnDemo;
 
-	// List staff
-	private JList list ;
-	private JPanel panel;
-	private Vector<String> matrixContaion;
-	private JScrollPane scroolPaneMatrix;
-
+	
 
 	//Graph Style
 	private JComboBox<String> cbGraphStyle;
 	private  String[] graphStyle = {"Complite Graph","modGraph3 s","randomGraph"};
-	private String[] temp;
+	
 	private boolean[][] adjacencyMat;
 
 	//number of vertex
@@ -77,6 +73,8 @@ ListSelectionListener{
 
 	//private JFileChooser chooser;
 	private JTextField tfUserCondition;
+	private JButton btnGraphStyleLoad;
+	private JLabel labelMassageLoadGraph;
 	/**
 	 * Launch the application.
 	 */
@@ -155,17 +153,11 @@ ListSelectionListener{
 		contentPane.add(lblCondition);
 
 		btnDemo = new JButton("Demo");
-		btnDemo.setBounds(185, 171, 89, 23);
+		btnDemo.setBounds(294, 136, 89, 23);
 		btnDemo.addActionListener(this);
 		contentPane.add(btnDemo);
 
-		panel = new JPanel();
-		panel.setBounds(new Rectangle(30, 60, 200, 200));
-		panel.setBounds(40, 92, 100, 97);
-		contentPane.add( panel );
-
 		matrixContaion = new Vector<String>();
-		panel.setLayout(null);
 		//panel.add(list, BorderLayout.CENTER);
 
 		/*	list = new JList(matrixContaion);
@@ -185,7 +177,7 @@ ListSelectionListener{
 
 
 		cbGraphStyle = new JComboBox(graphStyle);
-		cbGraphStyle.setBounds(260, 132, 123, 20);
+		cbGraphStyle.setBounds(33, 59, 123, 20);
 		contentPane.add(cbGraphStyle);
 		cbGraphStyle.addActionListener(this);
 
@@ -218,13 +210,6 @@ ListSelectionListener{
 
 
 
-				if ( tfUserCondition.getText().equals("")) {
-					isNewFormola = false;
-					condition  =fc.conditionList.get( cbCondition.getSelectedIndex()).formula;
-				}
-				else {
-					isNewFormola = true;
-				}
 
 
 			}
@@ -234,101 +219,116 @@ ListSelectionListener{
 		tfUserCondition.setColumns(10);
 
 		labelUserLoadCondition = new JLabel("");
-		labelUserLoadCondition.setBounds(166, 62, 46, 14);
+		labelUserLoadCondition.setBounds(166, 62, 66, 14);
 		contentPane.add(labelUserLoadCondition);
+		
+		btnGraphStyleLoad = new JButton("Load");
+		btnGraphStyleLoad.addActionListener(this);
+		btnGraphStyleLoad.setBounds(92, 87, 64, 23);
+		contentPane.add(btnGraphStyleLoad);
+		
+		labelMassageLoadGraph = new JLabel("");
+		labelMassageLoadGraph.setForeground(Color.RED);
+		labelMassageLoadGraph.setBounds(33, 140, 89, 14);
+		contentPane.add(labelMassageLoadGraph);
 
 
 	}
 
-	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		// Handler for list selection changes
-
-		// See if this is a listbox selection and the
-		// event stream has settled
-		if( e.getSource() == list
-				&& !e.getValueIsAdjusting() )
-		{
-			System.out.println("hello");
-		}
-
-
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-
-
 		if( e.getSource() == btnDemo )//press to open VRML Graph
 		{
-
-			if (isNewFormola) {
-				condition = tfUserCondition.getText();
-			}
-			System.out.println(condition);
-			graphApp = new GraphApplication(vertexSize, condition,adjacencyMat);
+			runDemo();
 		}
 
 
 		if (e.getSource() == cbGraphStyle) {// check the graph style chotion
 			ItemSelectable is = (ItemSelectable)e.getSource();
 			String graph = selectedString(is);
-			if (graph.equals(graphStyle[0])) {
-				adjacencyMat = GraphStyle.compliteGraph(vertexSize);	 
-			}
-			if (graph.equalsIgnoreCase(graphStyle[1])){
-				adjacencyMat = GraphStyle.modGraph3(vertexSize);
-			}
-			if (graph.equalsIgnoreCase(graphStyle[2])){
-				adjacencyMat = GraphStyle.randomGraph(vertexSize);
-			}
-			System.out.println(graph);
-			/*temp = GraphStyle.toString(adjacencyMat);
-			matrixContaion = new Vector<String>();
-			for (int i = 0; i < temp.length; i++) 
-				matrixContaion.addElement(temp[i]);	
-			list.setListData( matrixContaion );*/
+			setGraphStyle(graph);
 		}
 
-
-
 		if (e.getSource() == cbCondition) {//choose from Graph Condition combo box 
-
 			condition =fc.conditionList.get( cbCondition.getSelectedIndex()).formula;
-
 		}
 
 
 		if (e.getSource() == btnConditionSave) {//Save new formula
-			
-			if (isNewFormola) {
-				JFileChooser chooser = new JFileChooser();
-				String formola = tfUserCondition.getText();
-				fc.writeCondition(formola,chooser);
-			}
-
+		saveNewFormula();
 		}
 
 		if (e.getSource() == btnConditionLoad) {//Load new formula
-			
-			JFileChooser chooser = new JFileChooser();
-			String[] userLoad = fc.ReadCondition(chooser);
-			condition = userLoad[1];
-			tfUserCondition.setText(condition);
-			labelUserLoadCondition.setText(userLoad[0]);
-
+			loadNewFormula();
+		}
+		
+		if (e.getSource() == btnGraphStyleLoad) {//user Load graph
+			loadUserGraph();
 		}
 
 	}
+	
 	@Override
 	public void stateChanged(ChangeEvent e) {
-
+	
 		if(e.getSource() == spinnerVertex){
 			vertexSize = Integer.valueOf(spinnerVertex.getValue().toString());
 			System.out.println(vertexSize);
 		}
+	
+	}
 
+	private void loadUserGraph() {
+		JFileChooser chooser = new JFileChooser();
+		FileUserGraph fg = new FileUserGraph(chooser);
+		vertexSize = fg.numOfVertices;
+		spinnerVertex.setValue(vertexSize);
+		adjacencyMat = fg.adjacencyMat;
+		labelMassageLoadGraph.setText("load success");
+		
+	}
+
+	private void loadNewFormula() {
+		JFileChooser chooser = new JFileChooser();
+		String[] userLoad = fc.ReadCondition(chooser);
+		condition = userLoad[1];
+		tfUserCondition.setText(condition);
+		labelUserLoadCondition.setText(userLoad[0]);
+		
+	}
+
+	private void saveNewFormula() {
+		if (isNewFormola) {
+			JFileChooser chooser = new JFileChooser();
+			String formola = tfUserCondition.getText();
+			fc.writeCondition(formola,chooser);
+		}
+		
+	}
+
+	private void setGraphStyle(String graph) {
+		if (graph.equals(graphStyle[0])) {
+			adjacencyMat = GraphStyle.compliteGraph(vertexSize);	 
+		}
+		if (graph.equalsIgnoreCase(graphStyle[1])){
+			adjacencyMat = GraphStyle.modGraph3(vertexSize);
+		}
+		if (graph.equalsIgnoreCase(graphStyle[2])){
+			adjacencyMat = GraphStyle.randomGraph(vertexSize);
+		}
+		System.out.println(graph);
+		
+	}
+
+	private void runDemo() {
+		if (isNewFormola) {
+			condition = tfUserCondition.getText();
+		}
+		System.out.println(condition);
+		graphApp = new GraphApplication(vertexSize, condition,adjacencyMat);
+		
 	}
 
 	static private String selectedString(ItemSelectable is) {
