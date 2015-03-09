@@ -1,0 +1,462 @@
+#VRML V2.0 utf8
+
+# EDGES FORMATTING
+Switch {
+	choice [
+		DEF lookE Appearance {
+			material Material {
+				diffuseColor 1.0 1.0 1.0
+				ambientIntensity 0.0
+				emissiveColor 0.0 0.0 0.0
+				specularColor 0.0 0.0 0.0
+				shininess 0.0
+				transparency 0.0
+			} # end material
+		} # end appearance
+		DEF lookV Appearance {
+			material Material {
+				diffuseColor 255.0 140.0 0.0
+			} # end material
+		} # end appearance
+	] # end choice
+} # end switch
+# -----START EDGES-----
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [0.45 0.13 -2.83, -1.15 -0.17 0.07] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [0.45 0.13 -2.83, -0.19 -2.25 -0.02] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [0.45 0.13 -2.83, 0.66 1.95 -1.53] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [0.45 0.13 -2.83, 1.06 -1.94 1.42] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [0.45 0.13 -2.83, -1.17 0.19 0.73] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [0.45 0.13 -2.83, -0.79 0.26 -0.26] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [0.45 0.13 -2.83, 0.04 0.03 -2.4] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [-1.15 -0.17 0.07, -0.19 -2.25 -0.02] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [-1.15 -0.17 0.07, 0.66 1.95 -1.53] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [-1.15 -0.17 0.07, 1.06 -1.94 1.42] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [-1.15 -0.17 0.07, -1.17 0.19 0.73] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [-1.15 -0.17 0.07, -0.79 0.26 -0.26] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [-1.15 -0.17 0.07, 0.04 0.03 -2.4] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [-0.19 -2.25 -0.02, 0.66 1.95 -1.53] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [-0.19 -2.25 -0.02, 1.06 -1.94 1.42] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [-0.19 -2.25 -0.02, -1.17 0.19 0.73] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [-0.19 -2.25 -0.02, -0.79 0.26 -0.26] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [-0.19 -2.25 -0.02, 0.04 0.03 -2.4] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [0.66 1.95 -1.53, 1.06 -1.94 1.42] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [0.66 1.95 -1.53, -1.17 0.19 0.73] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [0.66 1.95 -1.53, -0.79 0.26 -0.26] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [0.66 1.95 -1.53, 0.04 0.03 -2.4] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [1.06 -1.94 1.42, -1.17 0.19 0.73] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [1.06 -1.94 1.42, -0.79 0.26 -0.26] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [1.06 -1.94 1.42, 0.04 0.03 -2.4] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [-1.17 0.19 0.73, -0.79 0.26 -0.26] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [-1.17 0.19 0.73, 0.04 0.03 -2.4] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+Transform {
+	children Shape {
+		appearance USE lookE
+		geometry Extrusion {
+			beginCap TRUE
+			endCap TRUE
+			solid TRUE
+			creaseAngle 1.0
+			crossSection [1.0 0.00,0.92 	-0.38,0.71 	-0.71,0.38 	-0.92,0.00 	-1.0,-0.38 	-0.92,-0.71 	-0.71,-0.92 	-0.38,-1.0 	-0.00,-0.92  	0.38,-0.71  	0.71,-0.38  	0.92,0.00  	1.0,0.38  	0.92,0.71  	0.71,0.92  	0.38,1.0  	0.00] # end cross section
+			spine [-0.79 0.26 -0.26, 0.04 0.03 -2.4] # end spine
+		} # end extrusion
+	} # end shape
+} # end transform
+# -----END EDGES-----
+# -----START VERTICES-----
+Transform {
+	translation 0.45 0.13 -2.83
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 1.5
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -1.15 -0.17 0.07
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 1.5
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -0.19 -2.25 -0.02
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 1.5
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 0.66 1.95 -1.53
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 1.5
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 1.06 -1.94 1.42
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 1.5
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -1.17 0.19 0.73
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 1.5
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation -0.79 0.26 -0.26
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 1.5
+		} # end sphere
+	} # end shape
+} # end transform
+Transform {
+	translation 0.04 0.03 -2.4
+	children Shape {
+		appearance USE lookV
+		geometry Sphere {
+			radius 1.5
+		} # end sphere
+	} # end shape
+} # end transform
+# -----END VERTICES-----

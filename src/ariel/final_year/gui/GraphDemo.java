@@ -9,6 +9,7 @@ import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -29,13 +30,21 @@ import java.awt.Rectangle;
 import javax.swing.JSpinner;
 
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class GraphDemo extends JFrame  implements	ActionListener, ChangeListener,
 ListSelectionListener{
 
+	private final String DEFULT_CONdITIOM = "x + y + z - 10";
+	private final int DEFULT_VERTEX_SIZE =1;
+
+	private FileCondition fc;
+
 	private JPanel contentPane;
 	private JLabel lblCondition;
 
+	@SuppressWarnings("unused")
 	private GraphApplication graphApp;
 	private int vertexSize;
 	private String condition;
@@ -49,7 +58,7 @@ ListSelectionListener{
 
 
 	//Graph Style
-	private JComboBox<String> comboBox;
+	private JComboBox<String> cbGraphStyle;
 	private  String[] graphStyle = {"Complite Graph","modGraph3 s","randomGraph"};
 	private String[] temp;
 	private boolean[][] adjacencyMat;
@@ -58,14 +67,21 @@ ListSelectionListener{
 	private String[]  numbers;
 	JSpinner spinnerVertex ;
 
+	// Condition
 	private String[] equationCondition;
 	private JComboBox cbCondition;
+	private 	JButton btnConditionSave,btnConditionLoad;
+	private boolean isNewFormola = false;
+	JLabel labelUserLoadCondition;
 
 
+	//private JFileChooser chooser;
+	private JTextField tfUserCondition;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -83,6 +99,8 @@ ListSelectionListener{
 	 */
 	public GraphDemo()  {
 
+
+
 		initilaize();
 
 		setLook();
@@ -94,28 +112,32 @@ ListSelectionListener{
 
 
 	private void initilaize() {
-		vertexSize =1;
+
+
+		vertexSize =DEFULT_VERTEX_SIZE;
 		numbers = StaticData.numberOfVertex();
-		equationCondition = StaticData.ListOfEquation();
-		condition = equationCondition[0];
+		fc = new FileCondition();
+		equationCondition = fc.getConditionName();
+		condition = DEFULT_CONdITIOM ;
+		adjacencyMat = GraphStyle.compliteGraph(vertexSize);
 
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void setLook() {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
 		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -133,20 +155,20 @@ ListSelectionListener{
 		contentPane.add(lblCondition);
 
 		btnDemo = new JButton("Demo");
-		btnDemo.setBounds(293, 58, 89, 23);
+		btnDemo.setBounds(185, 171, 89, 23);
 		btnDemo.addActionListener(this);
 		contentPane.add(btnDemo);
 
 		panel = new JPanel();
 		panel.setBounds(new Rectangle(30, 60, 200, 200));
-		panel.setBounds(40, 92, 299, 158);
+		panel.setBounds(40, 92, 100, 97);
 		contentPane.add( panel );
 
 		matrixContaion = new Vector<String>();
 		panel.setLayout(null);
 		//panel.add(list, BorderLayout.CENTER);
 
-		list = new JList(matrixContaion);
+		/*	list = new JList(matrixContaion);
 		list.setBounds(10, 0, 250, 150);
 		//	panel.add(list);
 		//	list.setBounds(216,24,208,185);
@@ -156,20 +178,19 @@ ListSelectionListener{
 		scroolPaneMatrix.setBounds(new Rectangle(10, 0, 250, 150));
 		scroolPaneMatrix.setViewportView(list);
 		panel.add(scroolPaneMatrix,BorderLayout.CENTER);
+		 */
 
 
 
 
 
-
-		comboBox = new JComboBox(graphStyle);
-		comboBox.setBounds(33, 59, 123, 20);
-		contentPane.add(comboBox);
-		comboBox.addActionListener(this);
+		cbGraphStyle = new JComboBox(graphStyle);
+		cbGraphStyle.setBounds(260, 132, 123, 20);
+		contentPane.add(cbGraphStyle);
+		cbGraphStyle.addActionListener(this);
 
 		cbCondition = new JComboBox(equationCondition);
-		cbCondition.setEditable(true);
-		cbCondition.setBounds(240, 24, 142, 19);
+		cbCondition.setBounds(241, 22, 142, 19);
 		contentPane.add(cbCondition);
 		cbCondition.addActionListener(this);
 
@@ -178,6 +199,44 @@ ListSelectionListener{
 		spinnerVertex.setBounds(112, 15, 44, 33);
 		contentPane.add(spinnerVertex);
 		spinnerVertex.addChangeListener(this);
+
+		btnConditionSave = new JButton("Save");
+		btnConditionSave.setBounds(241, 87, 68, 23);
+		contentPane.add(btnConditionSave);
+		btnConditionSave.addActionListener(this);
+
+
+		btnConditionLoad = new JButton("Load");
+		btnConditionLoad.setBounds(319, 88, 64, 21);
+		contentPane.add(btnConditionLoad);
+		btnConditionLoad.addActionListener(this);
+
+		tfUserCondition = new JTextField();
+		tfUserCondition.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+
+
+
+				if ( tfUserCondition.getText().equals("")) {
+					isNewFormola = false;
+					condition  =fc.conditionList.get( cbCondition.getSelectedIndex()).formula;
+				}
+				else {
+					isNewFormola = true;
+				}
+
+
+			}
+		});
+		tfUserCondition.setBounds(240, 59, 142, 20);
+		contentPane.add(tfUserCondition);
+		tfUserCondition.setColumns(10);
+
+		labelUserLoadCondition = new JLabel("");
+		labelUserLoadCondition.setBounds(166, 62, 46, 14);
+		contentPane.add(labelUserLoadCondition);
+
 
 	}
 
@@ -198,13 +257,21 @@ ListSelectionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
+
+
 		if( e.getSource() == btnDemo )//press to open VRML Graph
 		{
+
+			if (isNewFormola) {
+				condition = tfUserCondition.getText();
+			}
+			System.out.println(condition);
 			graphApp = new GraphApplication(vertexSize, condition,adjacencyMat);
 		}
 
 
-		if (e.getSource() == comboBox) {
+		if (e.getSource() == cbGraphStyle) {// check the graph style chotion
 			ItemSelectable is = (ItemSelectable)e.getSource();
 			String graph = selectedString(is);
 			if (graph.equals(graphStyle[0])) {
@@ -216,22 +283,42 @@ ListSelectionListener{
 			if (graph.equalsIgnoreCase(graphStyle[2])){
 				adjacencyMat = GraphStyle.randomGraph(vertexSize);
 			}
-			temp = GraphStyle.toString(adjacencyMat);
+			System.out.println(graph);
+			/*temp = GraphStyle.toString(adjacencyMat);
 			matrixContaion = new Vector<String>();
 			for (int i = 0; i < temp.length; i++) 
 				matrixContaion.addElement(temp[i]);	
-			list.setListData( matrixContaion );
-		}
-
-		
-
-		if (e.getSource() == cbCondition) {
-			condition =equationCondition[ cbCondition.getSelectedIndex()];
-
-			System.out.println(condition);
+			list.setListData( matrixContaion );*/
 		}
 
 
+
+		if (e.getSource() == cbCondition) {//choose from Graph Condition combo box 
+
+			condition =fc.conditionList.get( cbCondition.getSelectedIndex()).formula;
+
+		}
+
+
+		if (e.getSource() == btnConditionSave) {//Save new formula
+			
+			if (isNewFormola) {
+				JFileChooser chooser = new JFileChooser();
+				String formola = tfUserCondition.getText();
+				fc.writeCondition(formola,chooser);
+			}
+
+		}
+
+		if (e.getSource() == btnConditionLoad) {//Load new formula
+			
+			JFileChooser chooser = new JFileChooser();
+			String[] userLoad = fc.ReadCondition(chooser);
+			condition = userLoad[1];
+			tfUserCondition.setText(condition);
+			labelUserLoadCondition.setText(userLoad[0]);
+
+		}
 
 	}
 	@Override
@@ -249,4 +336,8 @@ ListSelectionListener{
 		return ((selected.length == 0) ? "null" : (String)selected[0]);
 	} 
 }
+
+
+
+
 
