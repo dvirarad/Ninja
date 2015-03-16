@@ -1,4 +1,4 @@
-package ariel.final_year.main_algorithm;
+package ariel.final_year.logic;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -7,27 +7,27 @@ import java.util.ArrayList;
 
 import ariel.final_year.expression.SyntaxException;
 
-public class Graph {
+public class VertexGenerator {
 
-	private int 						numOfVertices;
-	private ExprCondition 				condition;
+	private int 				numOfVertices;
+	private Condition 			condition;
 
-	private ArrayList<SurfaceEquation> 	surfaces;
-	private ArrayList<Vertex> 			vertices;
-	private int 						precision;
-	private int 						maxVertexSearch = 0;
+	private ArrayList<Surface> 	surfaces;
+	private ArrayList<Vertex> 	vertices;
+	private int 				precision;
+	private int 				maxVertexSearch = 0;
 
-	public Graph(int newNumOfVertices, ExprCondition newCondition) throws SyntaxException {
+	public VertexGenerator(int newNumOfVertices, Condition newCondition) throws SyntaxException {
 
 		numOfVertices 	= newNumOfVertices;
-		condition 		= new ExprCondition(newCondition);
+		condition 		= new Condition(newCondition);
 
-		surfaces		= new ArrayList<SurfaceEquation>();
+		surfaces		= new ArrayList<Surface>();
 		vertices		= new ArrayList<Vertex>();
-		
-		doYourThing();
+
+		generateCoordinates();
 	}
-	
+
 	/**
 	 * constructor
 	 * @param newNumOfVertices number of vertexs
@@ -35,24 +35,24 @@ public class Graph {
 	 * @param newPrecision aomunt of number after the point
 	 * @throws SyntaxException 
 	 */
-	public Graph(int newNumOfVertices, ExprCondition newCondition, boolean[][] newAdjacencyMat, int newPrecision) throws SyntaxException {
+	public VertexGenerator(int newNumOfVertices, Condition newCondition, boolean[][] newAdjacencyMat, int newPrecision) throws SyntaxException {
 
 		numOfVertices 	= newNumOfVertices;
-		condition 		= new ExprCondition(newCondition);
+		condition 		= new Condition(newCondition);
 
-		surfaces		= new ArrayList<SurfaceEquation>();
+		surfaces		= new ArrayList<Surface>();
 		vertices		= new ArrayList<Vertex>();
 		precision 		= newPrecision;
-		
-		doYourThing();
+
+		generateCoordinates();
 	}
 
 	/**
 	 * assign coordinates to vertices
 	 */
-	private void doYourThing() {
+	private void generateCoordinates() {
 		Vertex temp;
-		
+
 		for (int i = 0; i < numOfVertices; i++) {
 			boolean conditionIsMet = false;
 			int j = 0;
@@ -68,11 +68,11 @@ public class Graph {
 			}			
 		}
 	}
-	
+
 	public ArrayList<Vertex> getVertices() {
 		return vertices;
 	}
-	
+
 	/**
 	 * Adds all the possible combinations of plane o(n^2)
 	 * @param ver Vertex to Add
@@ -81,7 +81,7 @@ public class Graph {
 		if(vertices.size() >= 2){
 			for (int i = 0; i < vertices.size(); i++) {
 				for (int j = i+1; j < vertices.size(); j++) {
-					surfaces.add(new SurfaceEquation(vertices.get(i), vertices.get(j), ver));
+					surfaces.add(new Surface(vertices.get(i), vertices.get(j), ver));
 				}
 			}
 		}
@@ -93,7 +93,7 @@ public class Graph {
 	 * @return true if ver belongs to an already defined plane
 	 */
 	private boolean belongsToDefinedPlane(Vertex ver) {
-		for (SurfaceEquation surface : surfaces) 
+		for (Surface surface : surfaces) 
 			if (surface.includesVertex(ver)) 
 				return true;
 		return false;
@@ -146,7 +146,7 @@ public class Graph {
 				file.createNewFile();
 			}
 			BufferedWriter bw = new BufferedWriter(new FileWriter(file.getAbsoluteFile()));
-			
+
 			bw.write("Graph 3D");
 			bw.newLine();
 			bw.write("Number of vertices: "+ numOfVertices);
