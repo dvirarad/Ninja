@@ -2,8 +2,7 @@
 ## Algorithms for 3D printing of graphs
 ####*Dvir Arad, Jeremie Gabay*
 
-Main goal of the project is to print electrical panels in any form
-
+>Main goal of the project is to print electrical panels in any form. [pdf read me](doc/Report1-Eng.docx.pdf)
 
 ##### Summary
 >3D printing is rapidly becoming a standard in high scale manufacture. From car parts to prosthetics, this technology is very promising and will without a doubt play a central role in the future of mankind.
@@ -14,6 +13,10 @@ Main goal of the project is to print electrical panels in any form
 >Prof. Vadim E. Levit, our Algorithms teacher and Head of the Department of Computer Science and Mathematics at Ariel University, suggested Graph Theory as a research subject, particularly the 3D printing of graphs.
 	Since 3D printing is a vast, interesting area of research and discoveries yet to be made, we agreed to board on this research/journey with our well-appreciated teacher.
 	Needless to say that all the possible applications such a technology might close a little more the gap to are also a very strong source of motivation.
+
+##### Proof
+As mentioned in our first report, we must, first and foremost, [prove](doc/proof .pdf) that any given graph can be embedded in 3-dimensional space without any edge-crossing (intersections between edges).
+
 
 ##### Diagrams and general behaviour of the Algorithm
 Our Algorithm mainly consists of 3 modules:
