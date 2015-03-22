@@ -84,3 +84,7 @@ a. converts vertices & adj. matrix to VRML-formatted text
 b. output generated text to a .vrml file
 END PARSING OUT
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dvirarad/ninja/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
