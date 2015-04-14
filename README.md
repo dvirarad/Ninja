@@ -1,6 +1,6 @@
 # Ninja
 ## Algorithms for 3D printing of graphs
-####*Dvir Arad, Jeremie Gabay*
+####* Jeremie Gabay, Dvir Arad*
 
 >Main goal of the project is to print electrical panels in any form. [pdf read me](doc/Report1-Eng.docx.pdf)
 
