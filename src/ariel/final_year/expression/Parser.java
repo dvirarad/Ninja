@@ -43,6 +43,8 @@ import java.util.Vector;
   <LI>2-3
   <LI>cos(x^2) + sin(x^2)
   <UL> */
+@SuppressWarnings("unchecked")
+
 public class Parser {
 
     // Built-in constants
@@ -61,7 +63,9 @@ public class Parser {
 
     /** Set of Variable's that are allowed to appear in input expressions. 
      * If null, any variable is allowed. */
-    private Hashtable allowedVariables = null;
+   
+	@SuppressWarnings("rawtypes")
+	private Hashtable allowedVariables = null;
 
     /** Adjust the set of allowed variables: create it (if not yet
      * existent) and add optVariable (if it's nonnull).  If the
@@ -69,7 +73,9 @@ public class Parser {
      * strings that use any other variables.
      *
      * @param optVariable the variable to be allowed, or null */
-    public void allow(Variable optVariable) {
+    
+	@SuppressWarnings("rawtypes")
+	public void allow(Variable optVariable) {
 	if (null == allowedVariables) {
 	    allowedVariables = new Hashtable();
 	    allowedVariables.put(pi, pi);
@@ -258,8 +264,10 @@ public class Parser {
     boolean tryCorrections() {
 	return tryInsertions() || tryDeletions() || trySubstitutions();
     }
-
+    @SuppressWarnings("rawtypes")
     private boolean tryInsertions() {
+	
+	
 	Vector v = tokens.tokens;
 	for (int i = tokens.index; 0 <= i; --i) {
 	    Token t;
@@ -282,7 +290,7 @@ public class Parser {
 	}
 	return false;
     }
-
+    @SuppressWarnings("rawtypes")
     private boolean tryDeletions() {
 	Vector v = tokens.tokens;
 	for (int i = tokens.index; 0 <= i; --i) {
@@ -299,7 +307,7 @@ public class Parser {
 	}
 	return false;
     }
-
+    @SuppressWarnings("rawtypes")
     private boolean trySubstitutions() {
 	Vector v = tokens.tokens;
 	for (int i = tokens.index; 0 <= i; --i) {
