@@ -11,6 +11,7 @@ import java.util.Hashtable;
  * A variable is a simple expression with a name (like "x") and a
  * settable value.
  */
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class Variable extends Expr {
     private static Hashtable variables = new Hashtable();
     

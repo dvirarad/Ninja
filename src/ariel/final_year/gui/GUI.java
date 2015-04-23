@@ -47,6 +47,11 @@ public class GUI extends JFrame {
 	private JPanel contentPane;
 	private JPanel panel;
 
+	private JLabel lblTitle;
+	private JLabel lblLevit;
+	private JLabel lblArad;
+	private JLabel lblGabay;
+
 	private JLabel lblCondition;
 	private JTextField tfCondition;
 	private JComboBox<ConditionType> cbConditionType;
@@ -58,7 +63,6 @@ public class GUI extends JFrame {
 	private JLabel lblVertices;
 	private JComboBox<GraphType> cbGraphType;
 	private JButton btnLoadGraph;
-	private JLabel lblGraphSuccess;
 
 	private JButton btnGenerate;
 
@@ -67,10 +71,6 @@ public class GUI extends JFrame {
 	private boolean[][] adjacencyMat;
 	private int graphID;
 	private boolean isUserGraph;
-	private JLabel lblTitle;
-	private JLabel lblLevit;
-	private JLabel lblArad;
-	private JLabel lblGabay;
 
 	/**
 	 * Launch the application.
@@ -129,14 +129,7 @@ public class GUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(tfCondition.getText().isEmpty()) {
-					EventQueue.invokeLater(new Runnable() {
-						public void run() {
-							btnGenerate.setEnabled(false);
-							cbConditionType.setSelectedIndex(-1);
-						}
-					});
-				}
+				tfConditionEdited();
 			}
 		});
 		cbConditionType = new JComboBox<ConditionType>();
@@ -194,19 +187,12 @@ public class GUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					loadGraphPressed();
-				} catch (NumberFormatException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "File incorrectly formatted", "Loading error", JOptionPane.ERROR_MESSAGE);
 					e1.printStackTrace();
 				}
 			}
 		});
-		lblGraphSuccess = new JLabel("successfully loaded");
-		lblGraphSuccess.setFont(new Font("Lucida Grande", Font.BOLD, 13));
-		lblGraphSuccess.setForeground(Color.BLUE);
-		lblGraphSuccess.setVisible(false);
 
 		btnGenerate = new JButton("Generate STL");
 		btnGenerate.addActionListener(new ActionListener() {
@@ -218,13 +204,15 @@ public class GUI extends JFrame {
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} catch (ParseException e1) {
+				} catch (ParseException e2) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					e2.printStackTrace();
+				} catch (NullPointerException e3) {
+					JOptionPane.showMessageDialog(null, "No graph selected", "Select or load a graph", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
-		btnGenerate.setEnabled(false);
+		btnGenerate.setEnabled(true);
 
 		lblTitle = new JLabel("STL Generator");
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
@@ -265,7 +253,6 @@ public class GUI extends JFrame {
 																						.addComponent(lblGraph)
 																						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
 																								.addGroup(gl_panel.createSequentialGroup()
-																										.addComponent(lblGraphSuccess)
 																										.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 																										.addComponent(btnLoadGraph))
 																										.addGroup(gl_panel.createSequentialGroup()
@@ -320,7 +307,6 @@ public class GUI extends JFrame {
 														.addComponent(cbGraphType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 														.addPreferredGap(ComponentPlacement.RELATED)
 														.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-																.addComponent(lblGraphSuccess)
 																.addComponent(btnLoadGraph))
 																.addPreferredGap(ComponentPlacement.RELATED)
 																.addComponent(btnGenerate)
@@ -343,18 +329,23 @@ public class GUI extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 
+	protected void tfConditionEdited() {
+		if(tfCondition.getText().isEmpty()) {
+			EventQueue.invokeLater(new Runnable() {
+
+				public void run() {
+					cbConditionType.setSelectedIndex(-1);
+				}
+			});
+		}
+	}
+
 	protected void cbConditionTypeSelected() {
 		EventQueue.invokeLater(new Runnable() {
 
 			@Override
 			public void run() {
 				tfCondition.setText(((ConditionType) cbConditionType.getSelectedItem()).getCondition().toString());
-
-				if(!spinVertices.isEnabled() || cbGraphType.getSelectedIndex() > -1) {
-					btnGenerate.setEnabled(true);
-				} else {
-					btnGenerate.setEnabled(false);
-				}
 			}
 		});
 	}
@@ -380,7 +371,7 @@ public class GUI extends JFrame {
 		chooser.setCurrentDirectory(new File(StaticVariables.FOLDER_CONDITIONS));
 		if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
 			EventQueue.invokeLater(new Runnable() {
-				
+
 				@Override
 				public void run() {
 					try {
@@ -398,16 +389,12 @@ public class GUI extends JFrame {
 	}
 
 	protected void cbGraphTypeSelected() {
-		graphID = ((GraphType) cbGraphType.getSelectedItem()).getID();
+		try {
+			graphID = ((GraphType) cbGraphType.getSelectedItem()).getID();
+		} catch (NullPointerException e) {}
 
 		isUserGraph = false;
-		lblGraphSuccess.setVisible(false);
-
-		if (!tfCondition.getText().isEmpty()) {
-			btnGenerate.setEnabled(true);
-		} else {
-			btnGenerate.setEnabled(false);
-		}
+		spinVertices.setEnabled(true);
 	}
 
 	protected void loadGraphPressed() throws IOException {
@@ -418,25 +405,20 @@ public class GUI extends JFrame {
 		chooser.setCurrentDirectory(new File(StaticVariables.FOLDER_USER_GRAPHS));
 		if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
 			File f = chooser.getSelectedFile();
-			final String fileName = f.getName();
 
-			ParserIn pi;
-			pi = new ParserIn(f);
+			ParserIn pi = new ParserIn(f);
 			StaticMethods.printMat(pi.getAdjacencyMat());
 			numOfVertices = pi.getNumOfVertices();
 			adjacencyMat = StaticMethods.copyMat(pi.getAdjacencyMat());
 
 			EventQueue.invokeLater(new Runnable() {
-				
+
 				@Override
 				public void run() {
-					lblGraphSuccess.setText(fileName.substring(0, fileName.indexOf(".mat")) + " with " + numOfVertices + " vertices");
-					lblGraphSuccess.setVisible(true);
 					isUserGraph = true;
 
 					cbGraphType.setSelectedIndex(-1);
 					spinVertices.setEnabled(false);
-					btnGenerate.setEnabled(true);
 				}
 			});
 		}
@@ -464,7 +446,7 @@ public class GUI extends JFrame {
 
 				@Override
 				public void run() {
-					JOptionPane.showMessageDialog(null, "invalid equation for condition", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Invalid equation for condition", "Equation error", JOptionPane.ERROR_MESSAGE);
 					tfCondition.setText("");
 					cbConditionType.setSelectedIndex(-1);
 				}

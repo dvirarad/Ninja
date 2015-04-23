@@ -43,6 +43,7 @@ import java.util.Vector;
   <LI>2-3
   <LI>cos(x^2) + sin(x^2)
   <UL> */
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class Parser {
 
     // Built-in constants
@@ -61,7 +62,7 @@ public class Parser {
 
     /** Set of Variable's that are allowed to appear in input expressions. 
      * If null, any variable is allowed. */
-    private Hashtable allowedVariables = null;
+	private Hashtable allowedVariables = null;
 
     /** Adjust the set of allowed variables: create it (if not yet
      * existent) and add optVariable (if it's nonnull).  If the
@@ -69,7 +70,7 @@ public class Parser {
      * strings that use any other variables.
      *
      * @param optVariable the variable to be allowed, or null */
-    public void allow(Variable optVariable) {
+	public void allow(Variable optVariable) {
 	if (null == allowedVariables) {
 	    allowedVariables = new Hashtable();
 	    allowedVariables.put(pi, pi);
