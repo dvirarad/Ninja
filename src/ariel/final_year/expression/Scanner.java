@@ -6,7 +6,7 @@ package ariel.final_year.expression;
 
 import java.util.Vector;
 
-
+@SuppressWarnings({"rawtypes", "unchecked"})
 class Scanner {
 
     private String s;
