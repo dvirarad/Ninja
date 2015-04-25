@@ -52,6 +52,11 @@ public class GUI extends JFrame {
 	private JLabel lblArad;
 	private JLabel lblGabay;
 
+	private JLabel lblTitle;
+	private JLabel lblLevit;
+	private JLabel lblArad;
+	private JLabel lblGabay;
+
 	private JLabel lblCondition;
 	private JTextField tfCondition;
 	private JComboBox<ConditionType> cbConditionType;
@@ -194,7 +199,7 @@ public class GUI extends JFrame {
 			}
 		});
 
-		btnGenerate = new JButton("Generate STL");
+		btnGenerate = new JButton("Generate WRL");
 		btnGenerate.addActionListener(new ActionListener() {
 
 			@Override
@@ -214,7 +219,7 @@ public class GUI extends JFrame {
 		});
 		btnGenerate.setEnabled(true);
 
-		lblTitle = new JLabel("STL Generator");
+		lblTitle = new JLabel("WRL Generator");
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setFont(new Font("Lucida Grande", Font.BOLD, 16));
 
