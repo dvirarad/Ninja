@@ -52,11 +52,6 @@ public class GUI extends JFrame {
 	private JLabel lblArad;
 	private JLabel lblGabay;
 
-	private JLabel lblTitle;
-	private JLabel lblLevit;
-	private JLabel lblArad;
-	private JLabel lblGabay;
-
 	private JLabel lblCondition;
 	private JTextField tfCondition;
 	private JComboBox<ConditionType> cbConditionType;
