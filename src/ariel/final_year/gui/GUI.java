@@ -194,7 +194,7 @@ public class GUI extends JFrame {
 			}
 		});
 
-		btnGenerate = new JButton("Generate STL");
+		btnGenerate = new JButton("Generate WRL");
 		btnGenerate.addActionListener(new ActionListener() {
 
 			@Override
@@ -214,7 +214,7 @@ public class GUI extends JFrame {
 		});
 		btnGenerate.setEnabled(true);
 
-		lblTitle = new JLabel("STL Generator");
+		lblTitle = new JLabel("WRL Generator");
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setFont(new Font("Lucida Grande", Font.BOLD, 16));
 
