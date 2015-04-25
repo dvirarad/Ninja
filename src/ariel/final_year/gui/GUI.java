@@ -46,8 +46,6 @@ public class GUI extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel panel;
-ss
-
 
 	private JLabel lblTitle;
 	private JLabel lblLevit;
